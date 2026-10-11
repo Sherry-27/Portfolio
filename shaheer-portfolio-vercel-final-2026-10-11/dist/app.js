@@ -1,6 +1,7 @@
 const revealItems=[...document.querySelectorAll(".reveal")];
 const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const finePointer=window.matchMedia("(pointer: fine)").matches;
+const finePointer=window.matchMedia("(any-pointer: fine)").matches;
+const hoverPointer=window.matchMedia("(any-hover: hover)").matches;
 
 if(reducedMotion){
   revealItems.forEach(item=>item.classList.add("in-view"));
@@ -142,6 +143,14 @@ document.querySelectorAll(".project").forEach(card=>{
     }
   });
 });
+
+if(hoverPointer){
+  document.querySelectorAll(".now-card").forEach(card=>{
+    card.addEventListener("pointerenter",()=>card.classList.add("is-pointer-active"));
+    card.addEventListener("pointerleave",()=>card.classList.remove("is-pointer-active"));
+    card.addEventListener("pointercancel",()=>card.classList.remove("is-pointer-active"));
+  });
+}
 
 if(!reducedMotion&&finePointer){
   const root=document.documentElement;
