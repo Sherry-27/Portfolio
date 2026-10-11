@@ -867,9 +867,10 @@ footer:hover > span { color: #d0d2ca; }
     left: 50%;
     bottom: 74px;
     width: calc(100% - 20px);
-    grid-template-columns: 68px 1fr 38px;
+    grid-template-columns: 68px minmax(0, 1fr) 72px 34px;
+    gap: 8px;
   }
-  .wave { display: none; }
+  .wave { display: flex; min-width: 0; gap: 3px; overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
