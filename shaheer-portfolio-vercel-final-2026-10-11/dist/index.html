@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c0d0d">
+  <meta name="description" content="Shaheer Khan is an AI Engineer in Karachi building document intelligence, RAG systems, and computer vision products.">
+  <title>Shaheer Khan - AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230c0d0d'/%3E%3Cpath d='M8 22V9l8 8 8-8v13' fill='none' stroke='%23d6ff63' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css?v=responsive-frames-3">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-aura" aria-hidden="true"></div>
+
+  <aside class="side-rail" aria-label="Site navigation">
+    <a class="rail-mark" href="#home" aria-label="Shaheer Khan home">SK</a>
+    <nav class="rail-nav">
+      <a class="rail-link active" href="#home" data-section="home"><span>01</span><b>Home</b></a>
+      <a class="rail-link" href="#work" data-section="work"><span>02</span><b>Work</b></a>
+      <a class="rail-link" href="#story" data-section="story"><span>03</span><b>Story</b></a>
+      <a class="rail-link" href="#photos" data-section="photos"><span>04</span><b>Frames</b></a>
+      <a class="rail-link" href="#contact" data-section="contact"><span>05</span><b>Contact</b></a>
+    </nav>
+    <div class="rail-foot"><span>KHI</span><span id="local-time">--:--</span></div>
+  </aside>
+  <div class="mobile-clock" aria-label="Karachi local time"><span>KHI</span><span id="mobile-time">--:--</span></div>
+
+  <main class="site-shell">
+    <section class="hero section" id="home" aria-labelledby="hero-title">
+      <div class="hero-status reveal">
+        <span class="status-dot"></span>
+        <span>AI ENGINEER</span>
+        <span class="status-separator">/</span>
+        <span>KARACHI, PK</span>
+      </div>
+
+      <div class="hero-copy reveal">
+        <p class="hello">Hey, I'm Shaheer.</p>
+        <h1 id="hero-title"><span class="hero-line">I build useful AI.</span><br><em class="hero-line">Then I make it hold up.</em></h1>
+        <p class="hero-lede">My work sits between research and production: document systems that find the right evidence, vision pipelines that keep up with live video, and LLMs tuned for a specific job.</p>
+      </div>
+
+      <div class="hero-actions reveal">
+        <a class="button button-solid" href="#work">See the work</a>
+        <a class="button" href="mailto:muhdshaheerkhan27@gmail.com">Say hello</a>
+        <a class="text-link" href="https://github.com/Sherry-27" target="_blank" rel="noopener">GitHub</a>
+        <a class="text-link" href="https://www.linkedin.com/in/shaheer-khan-ai/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+
+      <div class="now-strip reveal" aria-label="What Shaheer is exploring now">
+        <div class="now-card">
+          <div class="now-card-head">
+            <span>CURRENT FOCUS</span>
+            <span class="now-symbol orbit-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <strong>Agentic systems</strong>
+          <small>Planning, retrieval, verification.</small>
+        </div>
+        <div class="now-card">
+          <div class="now-card-head">
+            <span>CURRENTLY EXPLORING</span>
+            <span class="now-symbol flow-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <strong>AI automation</strong>
+          <small>Useful workflows, fewer repetitive clicks.</small>
+        </div>
+        <div class="now-card">
+          <div class="now-card-head">
+            <span>CURRENTLY EXPERIMENTING WITH</span>
+            <span class="now-symbol voice-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
+          <strong>Voice agents</strong>
+          <small>Realtime speech, tools, natural handoffs.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work-section" id="work" aria-labelledby="work-title">
+      <header class="section-head reveal">
+        <div>
+          <span class="section-number">02 / SELECTED WORK</span>
+          <h2 id="work-title">Four systems I can<br><em>talk about for hours.</em></h2>
+        </div>
+        <p>Not tutorial projects. These are the ones where I had to measure, debug, rethink, and make trade-offs.</p>
+      </header>
+
+      <div class="project-list">
+        <article class="project reveal" tabindex="0">
+          <div class="project-top">
+            <span class="project-no">01</span>
+            <span class="project-kind">AGENTIC RAG</span>
+          </div>
+          <div class="project-body">
+            <div>
+              <h3>Agentic multi-hop document intelligence</h3>
+              <p>A RAG system that decides whether a question needs one retrieval pass or several, then checks if the evidence is actually enough before answering.</p>
+            </div>
+            <div class="project-proof">
+              <span><strong>0.91</strong> faithfulness</span>
+              <span><strong>4,783+</strong> indexed chunks</span>
+              <span><strong>~2s</strong> average query</span>
+            </div>
+          </div>
+          <div class="project-bottom">
+            <div class="tags"><span>LangGraph</span><span>BM25</span><span>Jina</span><span>RAGAS</span><span>Docker</span></div>
+            <a href="https://github.com/Sherry-27/AgentRag" target="_blank" rel="noopener">Repository</a>
+          </div>
+        </article>
+
+        <article class="project reveal" tabindex="0">
+          <div class="project-top">
+            <span class="project-no">02</span>
+            <span class="project-kind">COMPUTER VISION</span>
+          </div>
+          <div class="project-body">
+            <div>
+              <h3>Automatic number plate recognition</h3>
+              <p>A real-time pipeline that detects vehicles, keeps their identity across frames, and reads plates without losing the thread when traffic gets busy.</p>
+            </div>
+            <div class="project-proof">
+              <span><strong>95%</strong> mAP@0.5</span>
+              <span><strong>43 FPS</strong> on Tesla T4</span>
+              <span><strong>23ms</strong> inference</span>
+            </div>
+          </div>
+          <div class="project-bottom">
+            <div class="tags"><span>YOLO-based</span><span>PyTorch</span><span>EasyOCR</span><span>ONNX</span></div>
+            <a href="https://github.com/Sherry-27/-ANPR-Automatic-number-plate-recognition-" target="_blank" rel="noopener">Repository</a>
+          </div>
+        </article>
+
+        <article class="project reveal" tabindex="0">
+          <div class="project-top">
+            <span class="project-no">03</span>
+            <span class="project-kind">LLM FINE-TUNING</span>
+          </div>
+          <div class="project-body">
+            <div>
+              <h3>Llama medical QLoRA</h3>
+              <p>I fine-tuned a 1B-parameter Llama model on medical reasoning with 4-bit QLoRA, keeping the trainable footprint small enough to be practical. Built for education and research, not clinical decisions.</p>
+            </div>
+            <div class="project-proof">
+              <span><strong>87%</strong> task accuracy</span>
+              <span><strong>10K</strong> samples</span>
+              <span><strong>4.2M</strong> trainable params</span>
+            </div>
+          </div>
+          <div class="project-bottom">
+            <div class="tags"><span>Llama 3.2</span><span>QLoRA</span><span>PEFT</span><span>W&amp;B</span></div>
+            <div class="project-links"><a href="https://github.com/Sherry-27/llama-medical-qlora" target="_blank" rel="noopener">Repository</a><a href="https://huggingface.co/Shaheerkhan/llama-3.2-1b-medical-qlora" target="_blank" rel="noopener">Model</a></div>
+          </div>
+        </article>
+
+        <article class="project reveal" tabindex="0">
+          <div class="project-top">
+            <span class="project-no">04</span>
+            <span class="project-kind">DOCUMENT AI</span>
+          </div>
+          <div class="project-body">
+            <div>
+              <h3>DocIQ</h3>
+              <p>A production-minded document Q&amp;A system with cited answers, hybrid retrieval, reranking, streaming responses, evaluation, and the boring-but-important API safeguards.</p>
+            </div>
+            <div class="project-proof">
+              <span><strong>Hybrid</strong> sparse + dense</span>
+              <span><strong>RRF</strong> fusion</span>
+              <span><strong>RAGAS</strong> evaluation</span>
+            </div>
+          </div>
+          <div class="project-bottom">
+            <div class="tags"><span>FastAPI</span><span>Gemini</span><span>ChromaDB</span><span>Groq</span></div>
+            <a href="https://github.com/Sherry-27/DocIQ" target="_blank" rel="noopener">Repository</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section story-section" id="story" aria-labelledby="story-title">
+      <header class="section-head reveal">
+        <div>
+          <span class="section-number">03 / THE LONG VERSION</span>
+          <h2 id="story-title"><em>“I'll make it soon.”</em></h2>
+        </div>
+        <p class="story-kicker">I said that for long enough. Then I started shipping.</p>
+      </header>
+
+      <div class="story-grid">
+        <div class="story-note reveal">
+          <p>I'm a software engineering student who ended up deep in AI because I like systems with moving parts: retrieval, models, APIs, evaluation, deployment. The part I enjoy most is where the demo stops and engineering starts.</p>
+          <p>I care about clear answers, measurable results, and building things that another person can actually use.</p>
+          <span>- Shaheer</span>
+        </div>
+        <ol class="timeline reveal">
+          <li>
+            <time>UNTIL AUG 2026</time>
+            <div><strong>AI Chatbot Engineer</strong><span>Tynovate Studio / Remote</span><p>Built enterprise document intelligence, RAG evaluation, streaming APIs, observability, and deployment.</p></div>
+          </li>
+          <li>
+            <time>2024</time>
+            <div><strong>Data Analyst Trainee</strong><span>Accenture</span><p>Cleaned and modeled seven datasets, then turned the patterns into a story stakeholders could act on.</p></div>
+          </li>
+          <li>
+            <time>2024</time>
+            <div><strong>Software Engineering Trainee</strong><span>Walmart</span><p>Worked through data structures, UML, scalable processor architecture, and database design.</p></div>
+          </li>
+          <li>
+            <time>2023 - 2026</time>
+            <div><strong>BS Software Engineering</strong><span>Karachi University / UBIT</span><p>Learning the fundamentals properly while shipping increasingly ambitious AI systems.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section photo-section" id="photos" aria-labelledby="photos-title">
+      <header class="section-head reveal">
+        <div>
+          <span class="section-number">04 / FRAMES WORTH KEEPING</span>
+          <h2 id="photos-title">Things that made me<br><em>stop for a second.</em></h2>
+        </div>
+        <p>A small break from embeddings, latency charts, and terminal windows.</p>
+      </header>
+      <div class="photo-grid">
+        <figure class="photo-card photo-wide reveal">
+          <img src="images/evening-walk.webp" alt="A palm-lined road under a vivid purple and pink evening sky" width="800" height="1422" decoding="async">
+          <figcaption><span>01 / EVENING WALK</span><p>The sky doing the most.</p></figcaption>
+        </figure>
+        <figure class="photo-card photo-square reveal">
+          <img src="images/garden-frame.webp" alt="Pink flowers growing beside a black garden fence" width="1200" height="900" decoding="async">
+          <figcaption><span>02 / GARDEN FRAME</span><p>Found color between ordinary things.</p></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section toolkit-section" id="toolkit" aria-labelledby="toolkit-title">
+      <div class="toolkit-title reveal">
+        <span class="section-number">05 / TOOLKIT</span>
+        <h2 id="toolkit-title">What I reach for.</h2>
+      </div>
+      <div class="toolkit-grid reveal" aria-label="Core engineering and automation tools">
+        <div class="tool-card" role="img" aria-label="Python" title="Python"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/python.svg" alt="" width="32" height="32"></span><div><strong>Python</strong><small>AI engineering</small></div></div>
+        <div class="tool-card" role="img" aria-label="LangGraph" title="LangGraph"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/langgraph.svg" alt="" width="32" height="32"></span><div><strong>LangGraph</strong><small>Agent workflows</small></div></div>
+        <div class="tool-card" role="img" aria-label="Agno" title="Agno"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/agno.svg" alt="" width="32" height="32"></span><div><strong>Agno</strong><small>Agent systems</small></div></div>
+        <div class="tool-card" role="img" aria-label="FastAPI" title="FastAPI"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/fastapi.svg" alt="" width="32" height="32"></span><div><strong>FastAPI</strong><small>Production APIs</small></div></div>
+        <div class="tool-card" role="img" aria-label="PyTorch" title="PyTorch"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/pytorch.svg" alt="" width="32" height="32"></span><div><strong>PyTorch</strong><small>Model work</small></div></div>
+        <div class="tool-card" role="img" aria-label="Hugging Face" title="Hugging Face"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/huggingface.svg" alt="" width="32" height="32"></span><div><strong>Hugging Face</strong><small>LLM tooling</small></div></div>
+        <div class="tool-card" role="img" aria-label="ONNX" title="ONNX"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/onnx.svg" alt="" width="32" height="32"></span><div><strong>ONNX</strong><small>Fast inference</small></div></div>
+        <div class="tool-card" role="img" aria-label="n8n" title="n8n"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/n8n.svg" alt="" width="32" height="32"></span><div><strong>n8n</strong><small>Workflow automation</small></div></div>
+        <div class="tool-card" role="img" aria-label="Make.com" title="Make.com"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/make.svg" alt="" width="32" height="32"></span><div><strong>Make.com</strong><small>App automation</small></div></div>
+        <div class="tool-card" role="img" aria-label="WATI" title="WATI"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/wati.svg" alt="" width="32" height="32"></span><div><strong>WATI</strong><small>WhatsApp flows</small></div></div>
+        <div class="tool-card" role="img" aria-label="Docker" title="Docker"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/docker.svg" alt="" width="32" height="32"></span><div><strong>Docker</strong><small>Repeatable deploys</small></div></div>
+        <div class="tool-card" role="img" aria-label="AWS" title="AWS"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/aws.svg" alt="" width="32" height="32"></span><div><strong>AWS</strong><small>Cloud delivery</small></div></div>
+      </div>
+      <div class="toolkit-more reveal">
+        <span>ALSO IN THE STACK</span>
+        <div class="tool-cloud" aria-label="Additional technical skills">
+          <span>LangChain</span><span>Hybrid Search</span><span>RAGAS</span><span>Qdrant</span><span>ChromaDB</span><span>Groq</span><span>Gemini</span><span>Transformers</span><span>PEFT / QLoRA</span><span>YOLOv9</span><span>OpenCV</span><span>SQL</span>
+        </div>
+      </div>
+      <div class="credentials reveal">
+        <div><span>IBM</span><strong>Certified Data Scientist</strong><small>2023</small></div>
+        <div><span>NVIDIA</span><strong>Deep Learning Engineer</strong><small>2025</small></div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-card reveal">
+        <span class="section-number">06 / LET'S TALK</span>
+        <h2 id="contact-title">Have a messy AI problem?</h2>
+        <p>I like the ones where the answer is not just “call a model and hope.” If you're hiring, collaborating, or building something ambitious, my inbox is open.</p>
+        <div class="contact-actions">
+          <a class="button button-solid" href="mailto:muhdshaheerkhan27@gmail.com">muhdshaheerkhan27@gmail.com</a>
+          <a class="button" href="https://www.linkedin.com/in/shaheer-khan-ai/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <footer>
+        <span>Designed around the work. Built with a little patience.</span>
+        <span>Shaheer Khan / <span id="year">2026</span></span>
+      </footer>
+    </section>
+  </main>
+
+  <div class="music-dock" role="region" aria-label="Ambient music player">
+    <button class="play-button" id="play-ambient" aria-pressed="false" aria-label="Play peaceful ambient music"><span></span>PLAY</button>
+    <div class="track-copy"><strong>Karachi after rain</strong><span>original generative ambient</span></div>
+    <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span class="track-time">LOOP</span>
+  </div>
+  <script src="app.js?v=mobile-clock"></script>
+</body>
+</html>
