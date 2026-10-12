@@ -26,6 +26,7 @@ body {
   color: var(--text);
   font: 400 1rem/1.6 var(--sans);
 }
+
 body::before {
   content: "";
   position: fixed;
@@ -840,9 +841,10 @@ footer:hover > span { color: #d0d2ca; }
   }
   .hero-actions .social-links {
     grid-column: 1 / -1;
-    justify-self: center;
+    justify-self: start;
     gap: 24px;
     margin: 2px 0 0;
+    padding-left: 25px;
   }
   .hero-actions .text-link {
     font-size: .8rem;
@@ -909,3 +911,16 @@ footer:hover > span { color: #d0d2ca; }
   .cursor-aura { display: none; }
   .hero-line { opacity: 1; filter: none; transform: none; }
 }
+
+@media (max-width: 680px) {
+  .hero-actions > .button-solid {
+    justify-content: flex-start;
+    padding-left: 24px;
+  }
+}
+@media (max-width: 680px) {
+  .hero-actions .social-links {
+    margin-top: 15px;
+  }
+}
+
