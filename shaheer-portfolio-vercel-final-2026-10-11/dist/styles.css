@@ -236,6 +236,13 @@ h1 em.hero-line:hover { text-shadow: 0 0 38px rgba(214,255,99,.22); }
   gap: 12px;
   margin-top: 30px;
 }
+.social-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 8px;
+}
+.social-links .text-link { margin-left: 0; }
 .button {
   min-height: 50px;
   display: inline-flex;
@@ -818,18 +825,27 @@ footer:hover > span { color: #d0d2ca; }
   .hero { min-height: auto; padding-top: 40px; }
   h1 { font-size: clamp(3.45rem, 17vw, 5.5rem); }
   .hero-lede { font-size: 1rem; }
-  .hero-actions { flex-wrap: nowrap; gap: clamp(4px, 1.7vw, 8px); }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 9px;
+    row-gap: 10px;
+  }
   .hero-actions .button {
-    flex: 0 1 auto;
-    min-height: 42px;
-    padding-inline: clamp(8px, 2.7vw, 13px);
-    font-size: clamp(.7rem, 3.1vw, .82rem);
+    width: 100%;
+    min-height: 48px;
+    padding-inline: 14px;
+    font-size: clamp(.78rem, 3.6vw, .9rem);
     white-space: nowrap;
   }
+  .hero-actions .social-links {
+    grid-column: 1 / -1;
+    justify-self: center;
+    gap: 24px;
+    margin: 2px 0 0;
+  }
   .hero-actions .text-link {
-    flex: 0 0 auto;
-    margin-left: 0;
-    font-size: clamp(.72rem, 3.1vw, .82rem);
+    font-size: .8rem;
     font-weight: 600;
     white-space: nowrap;
   }
