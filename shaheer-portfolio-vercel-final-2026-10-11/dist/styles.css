@@ -914,8 +914,9 @@ footer:hover > span { color: #d0d2ca; }
 
 @media (max-width: 680px) {
   .hero-actions > .button-solid {
-    justify-content: flex-start;
+    justify-content: center;
     padding-left: 24px;
+
   }
 }
 @media (max-width: 680px) {
