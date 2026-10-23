@@ -2,6 +2,8 @@ const revealItems=[...document.querySelectorAll(".reveal")];
 const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer=window.matchMedia("(any-pointer: fine)").matches;
 const hoverPointer=window.matchMedia("(any-hover: hover)").matches;
+const coarsePointer=window.matchMedia("(any-pointer: coarse)").matches;
+const mobileViewport=window.matchMedia("(max-width: 680px)").matches;
 
 if(reducedMotion||!("IntersectionObserver" in window)){
   revealItems.forEach(item=>item.classList.add("in-view"));
@@ -184,6 +186,72 @@ if(hoverPointer){
   }
 }
 
+const mobileMotionEnabled=mobileViewport||coarsePointer||!hoverPointer;
+if(mobileMotionEnabled){
+  const mobileMotionSelector=[
+    ".hero",
+    ".now-card",
+    ".work-section .section-head",
+    ".project",
+    ".story-section .section-head",
+    ".story-note",
+    ".timeline li",
+    ".photo-section .section-head",
+    ".photo-card",
+    ".toolkit-title",
+    ".tool-card",
+    ".tool-cloud span",
+    ".credentials > div",
+    ".contact-card",
+    ".contact-card .button",
+    ".contact-section footer",
+    ".music-dock"
+  ].join(",");
+  const mobileMotionTargets=[...document.querySelectorAll(mobileMotionSelector)];
+  mobileMotionTargets.forEach(item=>item.classList.add("mobile-motion"));
+
+  if(!reducedMotion){
+    if("IntersectionObserver" in window){
+      const mobileMotionObserver=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>entry.target.classList.toggle("is-mobile-active",entry.isIntersecting));
+      },{threshold:.16,rootMargin:"-6% 0px -10% 0px"});
+      mobileMotionTargets.forEach(item=>mobileMotionObserver.observe(item));
+    }else{
+      mobileMotionTargets.forEach(item=>item.classList.add("is-mobile-active"));
+    }
+
+    const tapTargets=[...new Set([
+      ...mobileMotionTargets,
+      ...document.querySelectorAll(".button, .text-link, .project-links a, .project-bottom > a, .rail-link, .play-button")
+    ])];
+    const tapTimers=new WeakMap();
+    const pressTarget=target=>{
+      const previous=tapTimers.get(target);
+      if(previous)clearTimeout(previous);
+      target.classList.add("is-tap-active");
+    };
+    const releaseTarget=target=>{
+      const previous=tapTimers.get(target);
+      if(previous)clearTimeout(previous);
+      tapTimers.set(target,setTimeout(()=>target.classList.remove("is-tap-active"),180));
+    };
+
+    tapTargets.forEach(item=>{
+      item.classList.add("mobile-tap-target");
+      if("PointerEvent" in window){
+        item.addEventListener("pointerdown",()=>pressTarget(item),{passive:true});
+        item.addEventListener("pointerup",()=>releaseTarget(item),{passive:true});
+        item.addEventListener("pointercancel",()=>releaseTarget(item),{passive:true});
+        item.addEventListener("pointerleave",()=>releaseTarget(item),{passive:true});
+      }else{
+        item.addEventListener("touchstart",()=>pressTarget(item),{passive:true});
+        item.addEventListener("touchend",()=>releaseTarget(item),{passive:true});
+        item.addEventListener("touchcancel",()=>releaseTarget(item),{passive:true});
+      }
+    });
+  }
+}
+
 if(finePointer||hoverPointer){
   const root=document.documentElement;
   const aura=document.querySelector(".cursor-aura");
@@ -249,9 +317,9 @@ if(finePointer){
     });
   }
 
-  document.querySelectorAll(".work-section .section-head, .story-section .section-head, .photo-section .section-head").forEach(head=>{
+  document.querySelectorAll(".work-section .section-head, .story-section .section-head, .photo-section .section-head, .toolkit-title").forEach(head=>{
     head.classList.add("interactive-section-head");
-    const lead=head.firstElementChild;
+    const lead=head.querySelector(":scope > div");
     const label=head.querySelector(".section-number");
     const title=head.querySelector("h2");
     const copy=head.querySelector(":scope > p");
