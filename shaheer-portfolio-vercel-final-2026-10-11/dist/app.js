@@ -3,7 +3,7 @@ const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matche
 const finePointer=window.matchMedia("(any-pointer: fine)").matches;
 const hoverPointer=window.matchMedia("(any-hover: hover)").matches;
 
-if(reducedMotion){
+if(reducedMotion||!("IntersectionObserver" in window)){
   revealItems.forEach(item=>item.classList.add("in-view"));
 }else{
   const revealObserver=new IntersectionObserver(entries=>{
@@ -68,6 +68,14 @@ let playing=false;
 const voices=new Set();
 const notes=[146.83,164.81,196,220,246.94,293.66];
 
+function setPlayerState(isPlaying){
+  playing=isPlaying;
+  playButton.lastChild.textContent=isPlaying?"PAUSE":"PLAY";
+  playButton.setAttribute("aria-label",isPlaying?"Pause peaceful ambient music":"Play peaceful ambient music");
+  playButton.setAttribute("aria-pressed",String(isPlaying));
+  dock.classList.toggle("playing",isPlaying);
+}
+
 function makeVoice(frequency,start,duration,volume,type="sine"){
   const oscillator=audioContext.createOscillator();
   const gain=audioContext.createGain();
@@ -98,23 +106,33 @@ function schedulePhrase(){
 
 async function startAmbient(){
   const AudioEngine=window.AudioContext||window.webkitAudioContext;
-  if(!AudioEngine)return;
-  audioContext=new AudioEngine();
-  const filter=audioContext.createBiquadFilter();
-  filter.type="lowpass";
-  filter.frequency.value=1450;
-  filter.Q.value=.7;
-  master=audioContext.createGain();
-  master.gain.value=.45;
-  master.connect(filter).connect(audioContext.destination);
-  await audioContext.resume();
-  schedulePhrase();
-  phraseTimer=setInterval(schedulePhrase,12400);
-  playing=true;
-  playButton.lastChild.textContent="PAUSE";
-  playButton.setAttribute("aria-label","Pause peaceful ambient music");
-  playButton.setAttribute("aria-pressed","true");
-  dock.classList.add("playing");
+  if(!AudioEngine){
+    playButton.setAttribute("aria-label","Ambient music is not supported by this browser");
+    return;
+  }
+  try{
+    audioContext=new AudioEngine();
+    const filter=audioContext.createBiquadFilter();
+    filter.type="lowpass";
+    filter.frequency.value=1450;
+    filter.Q.value=.7;
+    master=audioContext.createGain();
+    master.gain.value=.45;
+    master.connect(filter).connect(audioContext.destination);
+    await audioContext.resume();
+    if(audioContext.state!=="running")throw new Error("Audio context did not start");
+    schedulePhrase();
+    phraseTimer=setInterval(schedulePhrase,12400);
+    setPlayerState(true);
+  }catch(error){
+    console.warn("Ambient audio could not start.",error);
+    if(audioContext&&audioContext.state!=="closed"){
+      try{await audioContext.close()}catch(closeError){void closeError}
+    }
+    audioContext=null;
+    master=null;
+    setPlayerState(false);
+  }
 }
 
 async function stopAmbient(){
@@ -126,14 +144,18 @@ async function stopAmbient(){
   if(audioContext&&audioContext.state!=="closed")await audioContext.close();
   audioContext=null;
   master=null;
-  playing=false;
-  playButton.lastChild.textContent="PLAY";
-  playButton.setAttribute("aria-label","Play peaceful ambient music");
-  playButton.setAttribute("aria-pressed","false");
-  dock.classList.remove("playing");
+  setPlayerState(false);
 }
 
-playButton.addEventListener("click",()=>playing?stopAmbient():startAmbient());
+playButton.addEventListener("click",async()=>{
+  playButton.disabled=true;
+  try{
+    if(playing)await stopAmbient();
+    else await startAmbient();
+  }finally{
+    playButton.disabled=false;
+  }
+});
 
 document.querySelectorAll(".project").forEach(card=>{
   card.addEventListener("keydown",event=>{
@@ -144,17 +166,28 @@ document.querySelectorAll(".project").forEach(card=>{
   });
 });
 
+const nowCards=[...document.querySelectorAll(".now-card")];
 if(hoverPointer){
-  document.querySelectorAll(".now-card").forEach(card=>{
+  nowCards.forEach(card=>{
     card.addEventListener("pointerenter",()=>card.classList.add("is-pointer-active"));
     card.addEventListener("pointerleave",()=>card.classList.remove("is-pointer-active"));
     card.addEventListener("pointercancel",()=>card.classList.remove("is-pointer-active"));
   });
+}else{
+  if("IntersectionObserver" in window){
+    const nowMotionObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>entry.target.classList.toggle("is-pointer-active",entry.isIntersecting));
+    },{threshold:.45,rootMargin:"-8% 0px -8% 0px"});
+    nowCards.forEach(card=>nowMotionObserver.observe(card));
+  }else{
+    nowCards.forEach(card=>card.classList.add("is-pointer-active"));
+  }
 }
 
-if(!reducedMotion&&finePointer){
+if(finePointer||hoverPointer){
   const root=document.documentElement;
   const aura=document.querySelector(".cursor-aura");
+  const cursorDot=document.querySelector(".cursor-dot");
   let cursorX=-500;
   let cursorY=-500;
   let cursorFrame=null;
@@ -166,13 +199,22 @@ if(!reducedMotion&&finePointer){
   };
 
   window.addEventListener("pointermove",event=>{
+    if(event.pointerType==="touch")return;
     cursorX=event.clientX;
     cursorY=event.clientY;
-    aura?.classList.add("visible");
+    if(!reducedMotion)aura?.classList.add("visible");
+    cursorDot?.classList.add("visible");
     if(!cursorFrame)cursorFrame=requestAnimationFrame(paintCursor);
   },{passive:true});
-  document.documentElement.addEventListener("mouseleave",()=>aura?.classList.remove("visible"));
+  const hideCursor=()=>{
+    aura?.classList.remove("visible");
+    cursorDot?.classList.remove("visible");
+  };
+  document.documentElement.addEventListener("mouseleave",hideCursor);
+  window.addEventListener("blur",hideCursor);
+}
 
+if(finePointer){
   const hero=document.querySelector(".hero");
   if(hero){
     const status=hero.querySelector(".hero-status");

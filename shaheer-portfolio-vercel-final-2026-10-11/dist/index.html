@@ -17,11 +17,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230c0d0d'/%3E%3Cpath d='M8 22V9l8 8 8-8v13' fill='none' stroke='%23d6ff63' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=balanced-two-row-actions-20261012">
+  <link rel="stylesheet" href="styles.css?v=callflow-motion-tools-20261023">
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
   <div class="cursor-aura" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
 
   <aside class="side-rail" aria-label="Site navigation">
     <a class="rail-mark" href="#home" aria-label="Shaheer Khan home">SK</a>
@@ -101,6 +102,28 @@
         <article class="project reveal" tabindex="0">
           <div class="project-top">
             <span class="project-no">01</span>
+            <span class="project-kind">VOICE AI / AUTOMATION</span>
+          </div>
+          <div class="project-body">
+            <div>
+              <h3>CallFlow — real-time AI voice automation</h3>
+              <p>A real-time multilingual voice agent that streams Groq responses through Twilio, handles customer lookup and appointment booking, and preserves context when escalating to a human.</p>
+            </div>
+            <div class="project-proof">
+              <span><strong>Real-time</strong> streamed voice</span>
+              <span><strong>Multilingual</strong> speech</span>
+              <span><strong>Warm</strong> human handoff</span>
+            </div>
+          </div>
+          <div class="project-bottom">
+            <div class="tags"><span>FastAPI</span><span>Twilio</span><span>Groq</span><span>Deepgram</span><span>n8n</span></div>
+            <div class="project-links"><a href="https://callflow-voice-ai.vercel.app/" target="_blank" rel="noopener">Live Demo</a><a href="https://github.com/Sherry-27/callflow-real-time-ai-voice-automation" target="_blank" rel="noopener">Repository</a></div>
+          </div>
+        </article>
+
+        <article class="project reveal" tabindex="0">
+          <div class="project-top">
+            <span class="project-no">02</span>
             <span class="project-kind">AGENTIC RAG</span>
           </div>
           <div class="project-body">
@@ -122,7 +145,7 @@
 
         <article class="project reveal" tabindex="0">
           <div class="project-top">
-            <span class="project-no">02</span>
+            <span class="project-no">03</span>
             <span class="project-kind">COMPUTER VISION</span>
           </div>
           <div class="project-body">
@@ -139,28 +162,6 @@
           <div class="project-bottom">
             <div class="tags"><span>YOLO-based</span><span>PyTorch</span><span>EasyOCR</span><span>ONNX</span></div>
             <a href="https://github.com/Sherry-27/-ANPR-Automatic-number-plate-recognition-" target="_blank" rel="noopener">Repository</a>
-          </div>
-        </article>
-
-        <article class="project reveal" tabindex="0">
-          <div class="project-top">
-            <span class="project-no">03</span>
-            <span class="project-kind">LLM FINE-TUNING</span>
-          </div>
-          <div class="project-body">
-            <div>
-              <h3>Llama medical QLoRA</h3>
-              <p>I fine-tuned a 1B-parameter Llama model on medical reasoning with 4-bit QLoRA, keeping the trainable footprint small enough to be practical. Built for education and research, not clinical decisions.</p>
-            </div>
-            <div class="project-proof">
-              <span><strong>87%</strong> task accuracy</span>
-              <span><strong>10K</strong> samples</span>
-              <span><strong>4.2M</strong> trainable params</span>
-            </div>
-          </div>
-          <div class="project-bottom">
-            <div class="tags"><span>Llama 3.2</span><span>QLoRA</span><span>PEFT</span><span>W&amp;B</span></div>
-            <div class="project-links"><a href="https://github.com/Sherry-27/llama-medical-qlora" target="_blank" rel="noopener">Repository</a><a href="https://huggingface.co/Shaheerkhan/llama-3.2-1b-medical-qlora" target="_blank" rel="noopener">Model</a></div>
           </div>
         </article>
 
@@ -262,11 +263,15 @@
         <div class="tool-card" role="img" aria-label="WATI" title="WATI"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/wati.svg" alt="" width="32" height="32"></span><div><strong>WATI</strong><small>WhatsApp flows</small></div></div>
         <div class="tool-card" role="img" aria-label="Docker" title="Docker"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/docker.svg" alt="" width="32" height="32"></span><div><strong>Docker</strong><small>Repeatable deploys</small></div></div>
         <div class="tool-card" role="img" aria-label="AWS" title="AWS"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/aws.svg" alt="" width="32" height="32"></span><div><strong>AWS</strong><small>Cloud delivery</small></div></div>
+        <div class="tool-card" role="img" aria-label="Deepgram" title="Deepgram"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/deepgram.svg" alt="" width="32" height="32"></span><div><strong>Deepgram</strong><small>Streaming speech</small></div></div>
+        <div class="tool-card" role="img" aria-label="ElevenLabs" title="ElevenLabs"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/elevenlabs.svg" alt="" width="32" height="32"></span><div><strong>ElevenLabs</strong><small>Voice synthesis</small></div></div>
+        <div class="tool-card" role="img" aria-label="Twilio" title="Twilio"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/twilio.svg" alt="" width="32" height="32"></span><div><strong>Twilio</strong><small>Voice transport</small></div></div>
+        <div class="tool-card" role="img" aria-label="Groq" title="Groq"><span class="tool-mark" aria-hidden="true"><img class="tool-logo" src="images/tools/groq.svg" alt="" width="32" height="32"></span><div><strong>Groq</strong><small>Fast inference</small></div></div>
       </div>
       <div class="toolkit-more reveal">
         <span>ALSO IN THE STACK</span>
         <div class="tool-cloud" aria-label="Additional technical skills">
-          <span>LangChain</span><span>Hybrid Search</span><span>RAGAS</span><span>Qdrant</span><span>ChromaDB</span><span>Groq</span><span>Gemini</span><span>Transformers</span><span>PEFT / QLoRA</span><span>YOLOv9</span><span>OpenCV</span><span>SQL</span>
+          <span>LangChain</span><span>Hybrid Search</span><span>RAGAS</span><span>Qdrant</span><span>ChromaDB</span><span>Gemini</span><span>Transformers</span><span>PEFT / QLoRA</span><span>YOLOv9</span><span>OpenCV</span><span>SQL</span><span>SQLite</span><span>Zapier</span><span>WebSockets</span><span>ConversationRelay</span><span>DTMF</span>
         </div>
       </div>
       <div class="credentials reveal">
@@ -298,6 +303,6 @@
     <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <span class="track-time">LOOP</span>
   </div>
-  <script src="app.js?v=interactive-20261011-2"></script>
+  <script src="app.js?v=callflow-motion-tools-20261023"></script>
 </body>
 </html>
