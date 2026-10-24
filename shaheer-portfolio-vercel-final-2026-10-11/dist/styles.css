@@ -654,7 +654,7 @@ h1 em.hero-line:hover { text-shadow: 0 0 38px rgba(214,255,99,.22); }
   transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
 }
 .tool-card:hover { transform: translateY(-4px); border-color: rgba(214,255,99,.48); background: rgba(214,255,99,.035); box-shadow: 0 10px 26px rgba(0,0,0,.18); }
-@media (min-width: 681px) and (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 681px) and (any-hover: hover) and (any-pointer: fine) {
   .now-strip.desktop-in-view .orbit-symbol { animation: orbitTurn 4.8s linear infinite; }
   .now-strip.desktop-in-view .flow-symbol i { animation: flowIdle 1.45s ease-in-out infinite alternate; }
   .now-strip.desktop-in-view .flow-symbol i:nth-child(2) { animation-delay: -.45s; }
