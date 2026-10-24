@@ -186,6 +186,37 @@ if(hoverPointer){
   }
 }
 
+if(finePointer&&hoverPointer&&!reducedMotion){
+  const nowStrip=document.querySelector(".now-strip");
+  const toolkitGrid=document.querySelector(".toolkit-grid");
+  [...document.querySelectorAll(".toolkit-grid .tool-card")].forEach((card,index)=>{
+    card.style.setProperty("--tool-index",index);
+  });
+
+  const playDesktopIntro=target=>{
+    target.classList.add("desktop-intro");
+    setTimeout(()=>target.classList.remove("desktop-intro","desktop-intro-ready"),1400);
+  };
+
+  if("IntersectionObserver" in window){
+    toolkitGrid?.classList.add("desktop-intro-ready");
+    const desktopIntroObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting)return;
+        playDesktopIntro(entry.target);
+        desktopIntroObserver.unobserve(entry.target);
+      });
+    },{threshold:.22,rootMargin:"0px 0px -8% 0px"});
+    [nowStrip,toolkitGrid].forEach(target=>{
+      if(target)desktopIntroObserver.observe(target);
+    });
+  }else{
+    [nowStrip,toolkitGrid].forEach(target=>{
+      if(target)playDesktopIntro(target);
+    });
+  }
+}
+
 const mobileMotionEnabled=mobileViewport||coarsePointer||!hoverPointer;
 if(mobileMotionEnabled){
   const mobileMotionSelector=[
@@ -209,15 +240,22 @@ if(mobileMotionEnabled){
   ].join(",");
   const mobileMotionTargets=[...document.querySelectorAll(mobileMotionSelector)];
   mobileMotionTargets.forEach(item=>item.classList.add("mobile-motion"));
+  const mobileScrollTargets=[...document.querySelectorAll([
+    ".hero",
+    ".work-section .section-head",
+    ".story-section .section-head",
+    ".photo-section .section-head",
+    ".toolkit-title"
+  ].join(","))];
 
   if(!reducedMotion){
     if("IntersectionObserver" in window){
       const mobileMotionObserver=new IntersectionObserver(entries=>{
         entries.forEach(entry=>entry.target.classList.toggle("is-mobile-active",entry.isIntersecting));
       },{threshold:.16,rootMargin:"-6% 0px -10% 0px"});
-      mobileMotionTargets.forEach(item=>mobileMotionObserver.observe(item));
+      mobileScrollTargets.forEach(item=>mobileMotionObserver.observe(item));
     }else{
-      mobileMotionTargets.forEach(item=>item.classList.add("is-mobile-active"));
+      mobileScrollTargets.forEach(item=>item.classList.add("is-mobile-active"));
     }
 
     const tapTargets=[...new Set([

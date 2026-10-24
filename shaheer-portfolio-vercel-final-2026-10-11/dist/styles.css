@@ -654,6 +654,25 @@ h1 em.hero-line:hover { text-shadow: 0 0 38px rgba(214,255,99,.22); }
   transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
 }
 .tool-card:hover { transform: translateY(-4px); border-color: rgba(214,255,99,.48); background: rgba(214,255,99,.035); box-shadow: 0 10px 26px rgba(0,0,0,.18); }
+@media (hover: hover) and (pointer: fine) {
+  .now-strip.desktop-intro .orbit-symbol { animation: orbitTurn 1.15s linear 1; }
+  .now-strip.desktop-intro .flow-symbol i { animation: flowNode .48s ease-in-out 2 alternate; }
+  .now-strip.desktop-intro .flow-symbol i:nth-child(2) { animation-delay: .08s; }
+  .now-strip.desktop-intro .flow-symbol i:nth-child(3) { animation-delay: .16s; }
+  .now-strip.desktop-intro .voice-symbol i { animation: voicePulse .62s ease-in-out 2; }
+  .now-strip.desktop-intro .voice-symbol i:nth-child(2),
+  .now-strip.desktop-intro .voice-symbol i:nth-child(4) { animation-delay: .08s; }
+  .now-strip.desktop-intro .voice-symbol i:nth-child(3) { animation-delay: .16s; }
+  .toolkit-grid.desktop-intro-ready:not(.desktop-intro) .tool-card { opacity: 0; transform: translateY(10px) scale(.985); }
+  .toolkit-grid.desktop-intro .tool-card {
+    animation: toolkitCardIn .46s cubic-bezier(.2,.75,.2,1) both;
+    animation-delay: calc(var(--tool-index, 0) * 42ms);
+  }
+}
+@keyframes toolkitCardIn {
+  from { opacity: 0; transform: translateY(10px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 .tool-mark {
   width: 30px;
   height: 30px;
@@ -820,70 +839,34 @@ footer:hover > span { color: #d0d2ca; }
   .section-head.mobile-motion.is-mobile-active h2 em { text-shadow: 0 0 22px rgba(214,255,99,.17); }
   .section-head.mobile-motion.is-mobile-active > p { color: rgba(246,240,231,.82); transform: translateY(-2px); }
 
-  .project.mobile-motion {
-    transition: background .35s ease, box-shadow .35s ease, transform .2s ease;
+  .now-card.is-pointer-active { background: var(--panel); transform: none; }
+  .now-card.is-pointer-active::after { opacity: 0; transform: none; }
+  .now-card.is-pointer-active .now-card-head > span:first-child { text-shadow: 0 0 18px rgba(255,145,188,.08); }
+  .story-note.mobile-motion:hover { box-shadow: 12px 14px 0 rgba(255,255,255,.04); }
+  .story-note.mobile-motion:hover::before { opacity: 0; }
+  .story-note.mobile-motion:hover p,
+  .story-note.mobile-motion:hover span { transform: none; }
+  .photo-card.mobile-motion:hover img { transform: none; filter: saturate(.86) contrast(1.04); }
+  .photo-card.mobile-motion:hover figcaption span { transform: none; text-shadow: none; }
+  .photo-card.mobile-motion:hover figcaption p { color: var(--text); transform: none; }
+  .tool-card.mobile-motion:hover {
+    transform: none;
+    border-color: var(--line);
+    background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
   }
-  .project.mobile-motion.is-mobile-active {
-    background: rgba(214,255,99,.025);
-    box-shadow: inset 3px 0 0 rgba(214,255,99,.5);
-  }
-  .project.mobile-motion.is-mobile-active h3 { transform: translateX(3px); }
+  .tool-cloud span.mobile-motion:hover { transform: none; border-color: var(--line); color: #d5d6ce; }
+  .credentials > div.mobile-motion:hover { transform: none; border-color: var(--line); background: none; }
+  .credentials > div.mobile-motion:hover > span { color: var(--muted); }
+  .contact-card.mobile-motion:hover { box-shadow: none; }
+  .music-dock.mobile-motion:hover { border-color: rgba(255,255,255,.2); box-shadow: 0 18px 60px rgba(0,0,0,.42); }
+  .button.mobile-tap-target:hover:not(.is-tap-active) { transform: none; border-color: var(--line); }
+  .button-solid.mobile-tap-target:hover:not(.is-tap-active) { background: var(--text); }
+  .contact-card .button.mobile-tap-target:hover:not(.is-tap-active) { border-color: rgba(16,17,17,.25); }
+  .contact-card .button-solid.mobile-tap-target:hover:not(.is-tap-active) { background: var(--ink); }
+  .play-button.mobile-tap-target:hover:not(.is-tap-active) { transform: none; box-shadow: none; }
+  .text-link.mobile-tap-target:hover:not(.is-tap-active)::after { right: 100%; }
 
-  .story-note.mobile-motion.is-mobile-active {
-    box-shadow: 16px 18px 0 rgba(255,255,255,.055), 0 18px 48px rgba(255,145,188,.1);
-  }
-  .story-note.mobile-motion.is-mobile-active::before { opacity: 1; }
-  .story-note.mobile-motion.is-mobile-active p:first-of-type { transform: translate3d(2px,-2px,14px); }
-  .story-note.mobile-motion.is-mobile-active p:nth-of-type(2) { transform: translate3d(-1px,1px,10px); }
-  .story-note.mobile-motion.is-mobile-active span { transform: translate3d(4px,-1px,18px); }
-
-  .timeline li.mobile-motion.is-mobile-active {
-    transform: translateX(4px);
-    border-color: rgba(255,145,188,.28);
-    background: radial-gradient(240px circle at 20% 50%, rgba(255,145,188,.11), transparent 70%);
-    box-shadow: inset 3px 0 0 rgba(255,145,188,.72);
-  }
-  .timeline li.mobile-motion.is-mobile-active time {
-    color: var(--pink);
-    border-color: rgba(255,145,188,.42);
-    background: rgba(255,145,188,.08);
-    transform: translateX(2px);
-  }
-
-  .photo-card.mobile-motion.is-mobile-active img { transform: scale(1.025); filter: saturate(1) contrast(1.02); }
-  .photo-card.mobile-motion.is-mobile-active figcaption span { transform: translateX(3px); text-shadow: 0 0 14px rgba(255,145,188,.28); }
-  .photo-card.mobile-motion.is-mobile-active figcaption p { color: var(--lime); transform: translateX(-3px); }
-
-  .tool-card.mobile-motion.is-mobile-active {
-    transform: translateY(-3px);
-    border-color: rgba(214,255,99,.42);
-    background: rgba(214,255,99,.035);
-    box-shadow: 0 9px 22px rgba(0,0,0,.16);
-  }
-  .tool-cloud span.mobile-motion.is-mobile-active { transform: translateY(-2px); border-color: rgba(214,255,99,.4); color: var(--lime); }
-  .credentials > div.mobile-motion.is-mobile-active {
-    transform: translateY(-3px);
-    border-color: rgba(255,145,188,.4);
-    background: radial-gradient(220px circle at 50% 50%, rgba(255,145,188,.1), transparent 70%);
-  }
-  .credentials > div.mobile-motion.is-mobile-active > span { color: var(--pink); }
-
-  .contact-card.mobile-motion.is-mobile-active {
-    box-shadow: 0 24px 64px rgba(0,0,0,.26);
-    --spot-x: 50%;
-    --spot-y: 45%;
-  }
-  .contact-card.mobile-motion.is-mobile-active .section-number { transform: translateX(3px); }
-  .contact-card.mobile-motion.is-mobile-active h2 { transform: translateY(-3px); }
-  .contact-card.mobile-motion.is-mobile-active > p { transform: translateY(-2px); }
-  .contact-card .button.mobile-motion.is-mobile-active { border-color: rgba(16,17,17,.46); transform: translateY(-1px); }
-  .contact-section footer.mobile-motion.is-mobile-active > span:first-child { transform: translateX(3px); color: #d0d2ca; }
-  .contact-section footer.mobile-motion.is-mobile-active > span:last-child { transform: translateX(-3px); color: #d0d2ca; }
-
-  .music-dock.mobile-motion.is-mobile-active {
-    border-color: rgba(255,145,188,.34);
-    box-shadow: 0 18px 52px rgba(0,0,0,.45), 0 0 0 1px rgba(255,145,188,.05);
-  }
   .button.mobile-tap-target.is-tap-active,
   .play-button.mobile-tap-target.is-tap-active { transform: translateY(1px) scale(.975); border-color: var(--lime); }
   .text-link.mobile-tap-target.is-tap-active { color: var(--text); transform: translateY(1px); }
@@ -904,26 +887,26 @@ footer:hover > span { color: #d0d2ca; }
   .music-dock.mobile-tap-target.is-tap-active { transform: scale(.985); }
   .story-note.mobile-tap-target.is-tap-active { transform: rotate(-1deg) scale(.985); }
 
-  .project.mobile-motion:hover:not(.is-tap-active),
-  .project.mobile-motion:focus-within:not(.is-tap-active) { color: var(--text); transform: none; }
-  .project.mobile-motion:hover:not(.is-tap-active)::before,
-  .project.mobile-motion:focus-within:not(.is-tap-active)::before { transform: translateY(102%); }
-  .project.mobile-motion:hover:not(.is-tap-active) h3,
-  .project.mobile-motion:focus-within:not(.is-tap-active) h3 { transform: translateX(3px); }
-  .project.mobile-motion:hover:not(.is-tap-active) .project-kind,
-  .project.mobile-motion:focus-within:not(.is-tap-active) .project-kind,
-  .project.mobile-motion:hover:not(.is-tap-active) .project-body p,
-  .project.mobile-motion:focus-within:not(.is-tap-active) .project-body p,
-  .project.mobile-motion:hover:not(.is-tap-active) .tags span,
-  .project.mobile-motion:focus-within:not(.is-tap-active) .tags span { color: var(--muted); border-color: var(--line); }
-  .project.mobile-motion:hover:not(.is-tap-active) .project-no,
-  .project.mobile-motion:focus-within:not(.is-tap-active) .project-no { color: var(--lime); }
-  .project.mobile-motion:hover:not(.is-tap-active) .project-proof,
-  .project.mobile-motion:focus-within:not(.is-tap-active) .project-proof,
-  .project.mobile-motion:hover:not(.is-tap-active) .project-proof span,
-  .project.mobile-motion:focus-within:not(.is-tap-active) .project-proof span { border-color: var(--line); color: var(--muted); }
-  .project.mobile-motion:hover:not(.is-tap-active) .project-proof strong,
-  .project.mobile-motion:focus-within:not(.is-tap-active) .project-proof strong { color: var(--text); }
+  .project.mobile-motion:hover,
+  .project.mobile-motion:focus-within { color: var(--text); }
+  .project.mobile-motion:hover::before,
+  .project.mobile-motion:focus-within::before { transform: translateY(102%); }
+  .project.mobile-motion:hover h3,
+  .project.mobile-motion:focus-within h3 { transform: none; }
+  .project.mobile-motion:hover .project-kind,
+  .project.mobile-motion:focus-within .project-kind,
+  .project.mobile-motion:hover .project-body p,
+  .project.mobile-motion:focus-within .project-body p,
+  .project.mobile-motion:hover .tags span,
+  .project.mobile-motion:focus-within .tags span { color: var(--muted); border-color: var(--line); }
+  .project.mobile-motion:hover .project-no,
+  .project.mobile-motion:focus-within .project-no { color: var(--lime); }
+  .project.mobile-motion:hover .project-proof,
+  .project.mobile-motion:focus-within .project-proof,
+  .project.mobile-motion:hover .project-proof span,
+  .project.mobile-motion:focus-within .project-proof span { border-color: var(--line); color: var(--muted); }
+  .project.mobile-motion:hover .project-proof strong,
+  .project.mobile-motion:focus-within .project-proof strong { color: var(--text); }
 }
 
 @media (max-width: 900px) {
