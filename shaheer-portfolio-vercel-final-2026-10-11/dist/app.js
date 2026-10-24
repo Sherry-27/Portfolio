@@ -314,36 +314,6 @@ if(mobileMotionEnabled){
   }
 }
 
-if(finePointer||hoverPointer){
-  const root=document.documentElement;
-  const aura=document.querySelector(".cursor-aura");
-  const cursorDot=document.querySelector(".cursor-dot");
-  let cursorX=-500;
-  let cursorY=-500;
-  let cursorFrame=null;
-
-  const paintCursor=()=>{
-    root.style.setProperty("--cursor-x",`${cursorX}px`);
-    root.style.setProperty("--cursor-y",`${cursorY}px`);
-    cursorFrame=null;
-  };
-
-  window.addEventListener("pointermove",event=>{
-    if(event.pointerType==="touch")return;
-    cursorX=event.clientX;
-    cursorY=event.clientY;
-    if(!reducedMotion)aura?.classList.add("visible");
-    cursorDot?.classList.add("visible");
-    if(!cursorFrame)cursorFrame=requestAnimationFrame(paintCursor);
-  },{passive:true});
-  const hideCursor=()=>{
-    aura?.classList.remove("visible");
-    cursorDot?.classList.remove("visible");
-  };
-  document.documentElement.addEventListener("mouseleave",hideCursor);
-  window.addEventListener("blur",hideCursor);
-}
-
 if(finePointer){
   const hero=document.querySelector(".hero");
   if(hero){
