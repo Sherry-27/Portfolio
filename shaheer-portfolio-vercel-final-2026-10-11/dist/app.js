@@ -200,20 +200,26 @@ if(finePointer&&hoverPointer&&!reducedMotion){
 
   if("IntersectionObserver" in window){
     toolkitGrid?.classList.add("desktop-intro-ready");
-    const desktopIntroObserver=new IntersectionObserver(entries=>{
+    const desktopNowObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        entry.target.classList.toggle("desktop-in-view",entry.isIntersecting);
+      });
+    },{threshold:.28,rootMargin:"-6% 0px -10% 0px"});
+    if(nowStrip)desktopNowObserver.observe(nowStrip);
+
+    const desktopToolkitObserver=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(!entry.isIntersecting)return;
         playDesktopIntro(entry.target);
-        desktopIntroObserver.unobserve(entry.target);
+        desktopToolkitObserver.unobserve(entry.target);
       });
     },{threshold:.22,rootMargin:"0px 0px -8% 0px"});
-    [nowStrip,toolkitGrid].forEach(target=>{
-      if(target)desktopIntroObserver.observe(target);
-    });
+    if(toolkitGrid)desktopToolkitObserver.observe(toolkitGrid);
   }else{
-    [nowStrip,toolkitGrid].forEach(target=>{
-      if(target)playDesktopIntro(target);
-    });
+    if(nowStrip)nowStrip.classList.add("desktop-in-view");
+    if(toolkitGrid){
+      playDesktopIntro(toolkitGrid);
+    }
   }
 }
 
@@ -240,6 +246,24 @@ if(mobileMotionEnabled){
   ].join(",");
   const mobileMotionTargets=[...document.querySelectorAll(mobileMotionSelector)];
   mobileMotionTargets.forEach(item=>item.classList.add("mobile-motion"));
+  const mobileProjects=[...document.querySelectorAll(".project")];
+  const selectMobileProject=project=>{
+    mobileProjects.forEach(item=>item.classList.toggle("is-mobile-selected",item===project));
+  };
+  if(mobileProjects.length){
+    if("IntersectionObserver" in window){
+      const mobileProjectObserver=new IntersectionObserver(entries=>{
+        const candidates=entries
+          .filter(entry=>entry.isIntersecting)
+          .sort((a,b)=>Math.abs((a.boundingClientRect.top+a.boundingClientRect.bottom)/2-innerHeight*.48)-Math.abs((b.boundingClientRect.top+b.boundingClientRect.bottom)/2-innerHeight*.48));
+        if(candidates[0])selectMobileProject(candidates[0].target);
+      },{threshold:.18,rootMargin:"0px"});
+      mobileProjects.forEach(project=>mobileProjectObserver.observe(project));
+    }else{
+      selectMobileProject(mobileProjects[0]);
+    }
+    mobileProjects.forEach(project=>project.addEventListener("click",()=>selectMobileProject(project)));
+  }
   const mobileScrollTargets=[...document.querySelectorAll([
     ".hero",
     ".work-section .section-head",

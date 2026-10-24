@@ -654,21 +654,26 @@ h1 em.hero-line:hover { text-shadow: 0 0 38px rgba(214,255,99,.22); }
   transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
 }
 .tool-card:hover { transform: translateY(-4px); border-color: rgba(214,255,99,.48); background: rgba(214,255,99,.035); box-shadow: 0 10px 26px rgba(0,0,0,.18); }
-@media (hover: hover) and (pointer: fine) {
-  .now-strip.desktop-intro .orbit-symbol { animation: orbitTurn 1.15s linear 1; }
-  .now-strip.desktop-intro .flow-symbol i { animation: flowNode .48s ease-in-out 2 alternate; }
-  .now-strip.desktop-intro .flow-symbol i:nth-child(2) { animation-delay: .08s; }
-  .now-strip.desktop-intro .flow-symbol i:nth-child(3) { animation-delay: .16s; }
-  .now-strip.desktop-intro .voice-symbol i { animation: voicePulse .62s ease-in-out 2; }
-  .now-strip.desktop-intro .voice-symbol i:nth-child(2),
-  .now-strip.desktop-intro .voice-symbol i:nth-child(4) { animation-delay: .08s; }
-  .now-strip.desktop-intro .voice-symbol i:nth-child(3) { animation-delay: .16s; }
+@media (min-width: 681px) and (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .now-strip.desktop-in-view .orbit-symbol { animation: orbitTurn 8s linear infinite; }
+  .now-strip.desktop-in-view .flow-symbol i { animation: flowIdle 2.7s ease-in-out infinite alternate; }
+  .now-strip.desktop-in-view .flow-symbol i:nth-child(2) { animation-delay: -.45s; }
+  .now-strip.desktop-in-view .flow-symbol i:nth-child(3) { animation-delay: -.9s; }
+  .now-strip.desktop-in-view .voice-symbol i { animation: voiceIdle 2.5s ease-in-out infinite; transform-origin: center; }
+  .now-strip.desktop-in-view .voice-symbol i:nth-child(2),
+  .now-strip.desktop-in-view .voice-symbol i:nth-child(4) { animation-delay: -.35s; }
+  .now-strip.desktop-in-view .voice-symbol i:nth-child(3) { animation-delay: -.7s; }
+  .now-strip.desktop-in-view .now-card:is(:hover, .is-pointer-active) .orbit-symbol { animation: orbitTurn 2.8s linear infinite; }
+  .now-strip.desktop-in-view .now-card:is(:hover, .is-pointer-active) .flow-symbol i { animation: flowNode .9s ease-in-out infinite alternate; }
+  .now-strip.desktop-in-view .now-card:is(:hover, .is-pointer-active) .voice-symbol i { animation: voicePulse 1.1s ease-in-out infinite; }
   .toolkit-grid.desktop-intro-ready:not(.desktop-intro) .tool-card { opacity: 0; transform: translateY(10px) scale(.985); }
   .toolkit-grid.desktop-intro .tool-card {
     animation: toolkitCardIn .46s cubic-bezier(.2,.75,.2,1) both;
     animation-delay: calc(var(--tool-index, 0) * 42ms);
   }
 }
+@keyframes flowIdle { to { transform: translateY(-1px); box-shadow: 0 0 4px rgba(214,255,99,.2); } }
+@keyframes voiceIdle { 50% { transform: scaleY(.78); opacity: .82; } }
 @keyframes toolkitCardIn {
   from { opacity: 0; transform: translateY(10px) scale(.985); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -910,21 +915,31 @@ footer:hover > span { color: #d0d2ca; }
     color: var(--ink);
     transform: scale(.985);
   }
-  .project.mobile-tap-target.is-tap-active::before { transform: translateY(0); }
-  .project.mobile-tap-target.is-tap-active h3 { transform: translateX(3px); }
+  .project.mobile-motion.is-mobile-selected { color: var(--ink); }
+  .project.mobile-tap-target.is-tap-active::before,
+  .project.mobile-motion.is-mobile-selected::before { transform: translateY(0); }
+  .project.mobile-tap-target.is-tap-active h3,
+  .project.mobile-motion.is-mobile-selected h3 { transform: translateX(3px); }
   .project.mobile-tap-target.is-tap-active .project-kind,
   .project.mobile-tap-target.is-tap-active .project-no,
   .project.mobile-tap-target.is-tap-active .project-body p,
-  .project.mobile-tap-target.is-tap-active .tags span {
+  .project.mobile-tap-target.is-tap-active .tags span,
+  .project.mobile-motion.is-mobile-selected .project-kind,
+  .project.mobile-motion.is-mobile-selected .project-no,
+  .project.mobile-motion.is-mobile-selected .project-body p,
+  .project.mobile-motion.is-mobile-selected .tags span {
     color: rgba(16,17,17,.72);
     border-color: rgba(16,17,17,.2);
   }
   .project.mobile-tap-target.is-tap-active .project-proof,
-  .project.mobile-tap-target.is-tap-active .project-proof span {
+  .project.mobile-tap-target.is-tap-active .project-proof span,
+  .project.mobile-motion.is-mobile-selected .project-proof,
+  .project.mobile-motion.is-mobile-selected .project-proof span {
     border-color: rgba(16,17,17,.22);
     color: rgba(16,17,17,.65);
   }
-  .project.mobile-tap-target.is-tap-active .project-proof strong { color: var(--ink); }
+  .project.mobile-tap-target.is-tap-active .project-proof strong,
+  .project.mobile-motion.is-mobile-selected .project-proof strong { color: var(--ink); }
 
   .photo-card.mobile-tap-target.is-tap-active img {
     transform: scale(1.025);
