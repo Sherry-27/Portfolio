@@ -186,7 +186,7 @@ if(hoverPointer){
   }
 }
 
-if(finePointer&&hoverPointer&&!reducedMotion){
+if(finePointer&&hoverPointer){
   const nowStrip=document.querySelector(".now-strip");
   const toolkitGrid=document.querySelector(".toolkit-grid");
   [...document.querySelectorAll(".toolkit-grid .tool-card")].forEach((card,index)=>{
@@ -204,7 +204,7 @@ if(finePointer&&hoverPointer&&!reducedMotion){
       entries.forEach(entry=>{
         entry.target.classList.toggle("desktop-in-view",entry.isIntersecting);
       });
-    },{threshold:.28,rootMargin:"-6% 0px -10% 0px"});
+    },{threshold:.05,rootMargin:"0px 0px -4% 0px"});
     if(nowStrip)desktopNowObserver.observe(nowStrip);
 
     const desktopToolkitObserver=new IntersectionObserver(entries=>{
