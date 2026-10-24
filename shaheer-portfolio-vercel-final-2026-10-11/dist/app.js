@@ -271,7 +271,7 @@ if(mobileMotionEnabled){
     const releaseTarget=target=>{
       const previous=tapTimers.get(target);
       if(previous)clearTimeout(previous);
-      tapTimers.set(target,setTimeout(()=>target.classList.remove("is-tap-active"),180));
+      tapTimers.set(target,setTimeout(()=>target.classList.remove("is-tap-active"),420));
     };
 
     tapTargets.forEach(item=>{

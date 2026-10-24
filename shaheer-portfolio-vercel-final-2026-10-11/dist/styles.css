@@ -839,9 +839,6 @@ footer:hover > span { color: #d0d2ca; }
   .section-head.mobile-motion.is-mobile-active h2 em { text-shadow: 0 0 22px rgba(214,255,99,.17); }
   .section-head.mobile-motion.is-mobile-active > p { color: rgba(246,240,231,.82); transform: translateY(-2px); }
 
-  .now-card.is-pointer-active { background: var(--panel); transform: none; }
-  .now-card.is-pointer-active::after { opacity: 0; transform: none; }
-  .now-card.is-pointer-active .now-card-head > span:first-child { text-shadow: 0 0 18px rgba(255,145,188,.08); }
   .story-note.mobile-motion:hover { box-shadow: 12px 14px 0 rgba(255,255,255,.04); }
   .story-note.mobile-motion:hover::before { opacity: 0; }
   .story-note.mobile-motion:hover p,
@@ -907,6 +904,61 @@ footer:hover > span { color: #d0d2ca; }
   .project.mobile-motion:focus-within .project-proof span { border-color: var(--line); color: var(--muted); }
   .project.mobile-motion:hover .project-proof strong,
   .project.mobile-motion:focus-within .project-proof strong { color: var(--text); }
+
+  /* Mobile touch feedback: keep scroll motion calm, but make direct taps feel alive. */
+  .project.mobile-tap-target.is-tap-active {
+    color: var(--ink);
+    transform: scale(.985);
+  }
+  .project.mobile-tap-target.is-tap-active::before { transform: translateY(0); }
+  .project.mobile-tap-target.is-tap-active h3 { transform: translateX(3px); }
+  .project.mobile-tap-target.is-tap-active .project-kind,
+  .project.mobile-tap-target.is-tap-active .project-no,
+  .project.mobile-tap-target.is-tap-active .project-body p,
+  .project.mobile-tap-target.is-tap-active .tags span {
+    color: rgba(16,17,17,.72);
+    border-color: rgba(16,17,17,.2);
+  }
+  .project.mobile-tap-target.is-tap-active .project-proof,
+  .project.mobile-tap-target.is-tap-active .project-proof span {
+    border-color: rgba(16,17,17,.22);
+    color: rgba(16,17,17,.65);
+  }
+  .project.mobile-tap-target.is-tap-active .project-proof strong { color: var(--ink); }
+
+  .photo-card.mobile-tap-target.is-tap-active img {
+    transform: scale(1.025);
+    filter: saturate(1) contrast(1.02);
+  }
+  .photo-card.mobile-tap-target.is-tap-active figcaption span {
+    text-shadow: 0 0 14px rgba(255,145,188,.28);
+  }
+  .photo-card.mobile-tap-target.is-tap-active figcaption p { color: var(--lime); }
+
+  .tool-card.mobile-tap-target.is-tap-active {
+    transform: translateY(-3px) scale(1.015);
+    border-color: rgba(214,255,99,.48);
+    background: rgba(214,255,99,.035);
+    box-shadow: 0 10px 26px rgba(0,0,0,.18);
+  }
+  .tool-cloud span.mobile-tap-target.is-tap-active {
+    transform: translateY(-3px) rotate(-1deg) scale(1.02);
+    border-color: var(--lime);
+    color: var(--lime);
+  }
+
+  .credentials > div.mobile-tap-target.is-tap-active {
+    transform: translateY(-3px) scale(1.01);
+    border-color: rgba(255,145,188,.44);
+    background: radial-gradient(220px circle at 50% 50%, rgba(255,145,188,.1), transparent 70%);
+  }
+  .credentials > div.mobile-tap-target.is-tap-active > span { color: var(--pink); }
+
+  .music-dock.mobile-tap-target.is-tap-active {
+    transform: translateX(-50%) scale(.985);
+    border-color: rgba(255,145,188,.4);
+    box-shadow: 0 18px 52px rgba(0,0,0,.45), 0 0 0 1px rgba(255,145,188,.06);
+  }
 }
 
 @media (max-width: 900px) {
