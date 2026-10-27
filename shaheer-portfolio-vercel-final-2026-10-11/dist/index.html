@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230c0d0d'/%3E%3Cpath d='M8 22V9l8 8 8-8v13' fill='none' stroke='%23d6ff63' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=black-lime-cursor-20261024">
+  <link rel="stylesheet" href="styles.css?v=project-accordion-20261027">
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -51,7 +51,7 @@
 
       <div class="hero-actions reveal">
         <a class="button button-solid" href="#work">See the work</a>
-        <a class="button" href="mailto:muhdshaheerkhan27@gmail.com">Say hello</a>
+        <a class="button" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=muhdshaheerkhan27@gmail.com" target="_blank" rel="noopener">Say hello</a>
         <div id="link" class="social-links" aria-label="Social profiles">
           <a class="text-link" href="https://github.com/Sherry-27" target="_blank" rel="noopener">GitHub</a>
           <a class="text-link" href="https://www.linkedin.com/in/shaheer-khan-ai/" target="_blank" rel="noopener">LinkedIn</a>
@@ -90,99 +90,180 @@
       <header class="section-head reveal">
         <div>
           <span class="section-number">02 / SELECTED WORK</span>
-          <h2 id="work-title">Four systems I can<br><em>talk about for hours.</em></h2>
+          <h2 id="work-title">Systems I can<br><em>talk about for hours.</em></h2>
         </div>
         <p>Not tutorial projects. These are the ones where I had to measure, debug, rethink, and make trade-offs.</p>
       </header>
 
-      <div class="project-list">
-        <article class="project reveal" tabindex="0">
-          <div class="project-top">
+      <div class="project-list project-accordion">
+        <article class="project project-expandable reveal is-open" data-project>
+          <button class="project-toggle" type="button" aria-expanded="true" aria-controls="project-panel-callflow">
             <span class="project-no">01</span>
+            <span class="project-title" role="heading" aria-level="3">CallFlow - real-time AI voice automation</span>
             <span class="project-kind">VOICE AI / AUTOMATION</span>
-          </div>
-          <div class="project-body">
-            <div>
-              <h3>CallFlow — real-time AI voice automation</h3>
-              <p>A real-time multilingual voice agent that streams Groq responses through Twilio, handles customer lookup and appointment booking, and preserves context when escalating to a human.</p>
+            <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span>
+          </button>
+          <div class="project-panel" id="project-panel-callflow">
+            <div class="project-panel-inner">
+              <div class="project-body">
+                <p>A real-time multilingual voice agent that streams Groq responses through Twilio, handles customer lookup and appointment booking, and preserves context when escalating to a human.</p>
+                <div class="project-proof">
+                  <span><strong>Real-time</strong> streamed voice</span>
+                  <span><strong>Multilingual</strong> speech</span>
+                  <span><strong>Warm</strong> human handoff</span>
+                </div>
+              </div>
+              <div class="project-bottom">
+                <div class="tags"><span>FastAPI</span><span>Twilio</span><span>Groq</span><span>Deepgram</span><span>n8n</span></div>
+                <div class="project-links"><a href="https://callflow-voice-ai.vercel.app/" target="_blank" rel="noopener">Live Demo</a><a href="https://github.com/Sherry-27/callflow-real-time-ai-voice-automation" target="_blank" rel="noopener">Repository</a></div>
+              </div>
+              <div class="project-system">
+                <div class="project-system-head">
+                  <span>INSIDE THE SYSTEM</span>
+                  <div class="project-system-tabs" role="tablist" aria-label="CallFlow system details">
+                    <button class="project-system-tab active" type="button" role="tab" aria-selected="true" data-system-tab="architecture">Architecture</button>
+                    <button class="project-system-tab" type="button" role="tab" aria-selected="false" data-system-tab="build">Behind the build</button>
+                  </div>
+                </div>
+                <div class="project-system-body">
+                  <div class="project-system-panel" data-system-panel="architecture">
+                    <div class="system-flow" tabindex="0" aria-label="CallFlow request path. Tap to replay.">
+                      <div class="flow-node" style="--step:0"><i>01</i><strong>Caller</strong><small>Twilio</small></div><span class="flow-wire" style="--step:0"></span>
+                      <div class="flow-node" style="--step:1"><i>02</i><strong>Speech</strong><small>Deepgram</small></div><span class="flow-wire" style="--step:1"></span>
+                      <div class="flow-node" style="--step:2"><i>03</i><strong>Reason</strong><small>Groq</small></div><span class="flow-wire" style="--step:2"></span>
+                      <div class="flow-node" style="--step:3"><i>04</i><strong>Act</strong><small>FastAPI</small></div><span class="flow-wire" style="--step:3"></span>
+                      <div class="flow-node" style="--step:4"><i>05</i><strong>Automate</strong><small>n8n</small></div>
+                    </div>
+                  </div>
+                  <div class="project-system-panel" data-system-panel="build" hidden>
+                    <div class="build-steps">
+                      <div><span>01 / PROBLEM</span><strong>Handoff lost context</strong><p>The customer had to repeat the conversation.</p></div>
+                      <div><span>02 / DECISION</span><strong>Persist call state</strong><p>Keep customer, intent and tool results together.</p></div>
+                      <div><span>03 / TRADE-OFF</span><strong>More coordination</strong><p>Streaming and tools need careful state handling.</p></div>
+                      <div><span>04 / RESULT</span><strong>Warm escalation</strong><p>The human receives a private briefing first.</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="project-proof">
-              <span><strong>Real-time</strong> streamed voice</span>
-              <span><strong>Multilingual</strong> speech</span>
-              <span><strong>Warm</strong> human handoff</span>
-            </div>
-          </div>
-          <div class="project-bottom">
-            <div class="tags"><span>FastAPI</span><span>Twilio</span><span>Groq</span><span>Deepgram</span><span>n8n</span></div>
-            <div class="project-links"><a href="https://callflow-voice-ai.vercel.app/" target="_blank" rel="noopener">Live Demo</a><a href="https://github.com/Sherry-27/callflow-real-time-ai-voice-automation" target="_blank" rel="noopener">Repository</a></div>
           </div>
         </article>
 
-        <article class="project reveal" tabindex="0">
-          <div class="project-top">
+        <article class="project project-expandable reveal" data-project>
+          <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-panel-agentrag">
             <span class="project-no">02</span>
+            <span class="project-title" role="heading" aria-level="3">Agentic multi-hop document intelligence</span>
             <span class="project-kind">AGENTIC RAG</span>
-          </div>
-          <div class="project-body">
-            <div>
-              <h3>Agentic multi-hop document intelligence</h3>
-              <p>A RAG system that decides whether a question needs one retrieval pass or several, then checks if the evidence is actually enough before answering.</p>
+            <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span>
+          </button>
+          <div class="project-panel" id="project-panel-agentrag">
+            <div class="project-panel-inner">
+              <div class="project-body">
+                <p>A RAG system that decides whether a question needs one retrieval pass or several, then checks if the evidence is actually enough before answering.</p>
+                <div class="project-proof">
+                  <span><strong>0.91</strong> faithfulness</span>
+                  <span><strong>4,783+</strong> indexed chunks</span>
+                  <span><strong>~2s</strong> average query</span>
+                </div>
+              </div>
+              <div class="project-bottom">
+                <div class="tags"><span>LangGraph</span><span>BM25</span><span>Jina</span><span>RAGAS</span><span>Docker</span></div>
+                <a href="https://github.com/Sherry-27/AgentRag" target="_blank" rel="noopener">Repository</a>
+              </div>
+              <div class="project-system">
+                <div class="project-system-head">
+                  <span>INSIDE THE SYSTEM</span>
+                  <div class="project-system-tabs" role="tablist" aria-label="AgentRAG system details">
+                    <button class="project-system-tab active" type="button" role="tab" aria-selected="true" data-system-tab="architecture">Architecture</button>
+                    <button class="project-system-tab" type="button" role="tab" aria-selected="false" data-system-tab="build">Behind the build</button>
+                  </div>
+                </div>
+                <div class="project-system-body">
+                  <div class="project-system-panel" data-system-panel="architecture">
+                    <div class="system-flow" tabindex="0" aria-label="AgentRAG request path. Tap to replay.">
+                      <div class="flow-node" style="--step:0"><i>01</i><strong>Question</strong><small>intent</small></div><span class="flow-wire" style="--step:0"></span>
+                      <div class="flow-node" style="--step:1"><i>02</i><strong>Retrieve</strong><small>hybrid</small></div><span class="flow-wire" style="--step:1"></span>
+                      <div class="flow-node" style="--step:2"><i>03</i><strong>Plan</strong><small>LangGraph</small></div><span class="flow-wire" style="--step:2"></span>
+                      <div class="flow-node" style="--step:3"><i>04</i><strong>Verify</strong><small>evidence</small></div><span class="flow-wire" style="--step:3"></span>
+                      <div class="flow-node" style="--step:4"><i>05</i><strong>Answer</strong><small>citations</small></div>
+                    </div>
+                  </div>
+                  <div class="project-system-panel" data-system-panel="build" hidden>
+                    <div class="build-steps">
+                      <div><span>01 / PROBLEM</span><strong>One pass missed context</strong><p>Complex questions needed evidence across documents.</p></div>
+                      <div><span>02 / DECISION</span><strong>Agentic routing</strong><p>The graph chooses when another retrieval step is needed.</p></div>
+                      <div><span>03 / TRADE-OFF</span><strong>Extra latency</strong><p>More reliable evidence costs another reasoning step.</p></div>
+                      <div><span>04 / RESULT</span><strong>Measured answers</strong><p>RAGAS makes quality visible instead of assumed.</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="project-proof">
-              <span><strong>0.91</strong> faithfulness</span>
-              <span><strong>4,783+</strong> indexed chunks</span>
-              <span><strong>~2s</strong> average query</span>
-            </div>
-          </div>
-          <div class="project-bottom">
-            <div class="tags"><span>LangGraph</span><span>BM25</span><span>Jina</span><span>RAGAS</span><span>Docker</span></div>
-            <a href="https://github.com/Sherry-27/AgentRag" target="_blank" rel="noopener">Repository</a>
           </div>
         </article>
 
-        <article class="project reveal" tabindex="0">
-          <div class="project-top">
+        <article class="project project-expandable reveal" data-project>
+          <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-panel-anpr">
             <span class="project-no">03</span>
+            <span class="project-title" role="heading" aria-level="3">Automatic number plate recognition</span>
             <span class="project-kind">COMPUTER VISION</span>
-          </div>
-          <div class="project-body">
-            <div>
-              <h3>Automatic number plate recognition</h3>
-              <p>A real-time pipeline that detects vehicles, keeps their identity across frames, and reads plates without losing the thread when traffic gets busy.</p>
+            <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span>
+          </button>
+          <div class="project-panel" id="project-panel-anpr">
+            <div class="project-panel-inner">
+              <div class="project-body">
+                <p>A real-time pipeline that detects vehicles, keeps their identity across frames, and reads plates without losing the thread when traffic gets busy.</p>
+                <div class="project-proof">
+                  <span><strong>95%</strong> mAP@0.5</span>
+                  <span><strong>43 FPS</strong> on Tesla T4</span>
+                  <span><strong>23ms</strong> inference</span>
+                </div>
+              </div>
+              <div class="project-bottom">
+                <div class="tags"><span>YOLO-based</span><span>PyTorch</span><span>EasyOCR</span><span>ONNX</span></div>
+                <a href="https://github.com/Sherry-27/-ANPR-Automatic-number-plate-recognition-" target="_blank" rel="noopener">Repository</a>
+              </div>
+              <p class="project-build-note"><strong>Build note:</strong> optimized the inference path so detection, tracking and OCR could stay responsive on live video.</p>
             </div>
-            <div class="project-proof">
-              <span><strong>95%</strong> mAP@0.5</span>
-              <span><strong>43 FPS</strong> on Tesla T4</span>
-              <span><strong>23ms</strong> inference</span>
-            </div>
-          </div>
-          <div class="project-bottom">
-            <div class="tags"><span>YOLO-based</span><span>PyTorch</span><span>EasyOCR</span><span>ONNX</span></div>
-            <a href="https://github.com/Sherry-27/-ANPR-Automatic-number-plate-recognition-" target="_blank" rel="noopener">Repository</a>
           </div>
         </article>
 
-        <article class="project reveal" tabindex="0">
-          <div class="project-top">
-            <span class="project-no">04</span>
-            <span class="project-kind">DOCUMENT AI</span>
+        <div class="project-more">
+          <button class="more-projects-button" type="button" aria-expanded="false" aria-controls="extra-projects">
+            <span>View more</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button>
+        </div>
+
+        <div class="extra-projects" id="extra-projects">
+          <div class="extra-projects-inner">
+            <article class="project project-expandable reveal" data-project>
+              <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-panel-dociq">
+                <span class="project-no">04</span>
+                <span class="project-title" role="heading" aria-level="3">DocIQ</span>
+                <span class="project-kind">DOCUMENT AI</span>
+                <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span>
+              </button>
+              <div class="project-panel" id="project-panel-dociq">
+                <div class="project-panel-inner">
+                  <div class="project-body">
+                    <p>A production-minded document Q&amp;A system with cited answers, hybrid retrieval, reranking, streaming responses, evaluation, and the boring-but-important API safeguards.</p>
+                    <div class="project-proof">
+                      <span><strong>Hybrid</strong> sparse + dense</span>
+                      <span><strong>RRF</strong> fusion</span>
+                      <span><strong>RAGAS</strong> evaluation</span>
+                    </div>
+                  </div>
+                  <div class="project-bottom">
+                    <div class="tags"><span>FastAPI</span><span>Gemini</span><span>ChromaDB</span><span>Groq</span></div>
+                    <a href="https://github.com/Sherry-27/DocIQ" target="_blank" rel="noopener">Repository</a>
+                  </div>
+                  <p class="project-build-note"><strong>Build note:</strong> designed for evidence-backed answers and the boring-but-important production safeguards.</p>
+                </div>
+              </div>
+            </article>
           </div>
-          <div class="project-body">
-            <div>
-              <h3>DocIQ</h3>
-              <p>A production-minded document Q&amp;A system with cited answers, hybrid retrieval, reranking, streaming responses, evaluation, and the boring-but-important API safeguards.</p>
-            </div>
-            <div class="project-proof">
-              <span><strong>Hybrid</strong> sparse + dense</span>
-              <span><strong>RRF</strong> fusion</span>
-              <span><strong>RAGAS</strong> evaluation</span>
-            </div>
-          </div>
-          <div class="project-bottom">
-            <div class="tags"><span>FastAPI</span><span>Gemini</span><span>ChromaDB</span><span>Groq</span></div>
-            <a href="https://github.com/Sherry-27/DocIQ" target="_blank" rel="noopener">Repository</a>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -283,7 +364,7 @@
         <h2 id="contact-title">Have a messy AI problem?</h2>
         <p>I like the ones where the answer is not just “call a model and hope.” If you're hiring, collaborating, or building something ambitious, my inbox is open.</p>
         <div class="contact-actions">
-          <a class="button button-solid" href="mailto:muhdshaheerkhan27@gmail.com">muhdshaheerkhan27@gmail.com</a>
+          <a class="button button-solid" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=muhdshaheerkhan27@gmail.com" target="_blank" rel="noopener">muhdshaheerkhan27@gmail.com</a>
           <a class="button" href="https://www.linkedin.com/in/shaheer-khan-ai/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
@@ -300,6 +381,6 @@
     <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <span class="track-time">LOOP</span>
   </div>
-  <script src="app.js?v=black-cursor-20261024"></script>
+  <script src="app.js?v=project-accordion-20261027"></script>
 </body>
 </html>

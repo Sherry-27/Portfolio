@@ -159,13 +159,76 @@ playButton.addEventListener("click",async()=>{
   }
 });
 
-document.querySelectorAll(".project").forEach(card=>{
-  card.addEventListener("keydown",event=>{
-    if(event.key==="Enter"){
-      const link=card.querySelector("a");
-      if(link)link.click();
-    }
+const expandableProjects=[...document.querySelectorAll("[data-project]")];
+const setProjectOpen=(project,open)=>{
+  project.classList.toggle("is-open",open);
+  project.querySelector(".project-toggle")?.setAttribute("aria-expanded",String(open));
+};
+
+const playSystemFlow=flow=>{
+  if(!flow||reducedMotion)return;
+  flow.classList.remove("is-running");
+  void flow.offsetWidth;
+  flow.classList.add("is-running");
+};
+
+expandableProjects.forEach(project=>{
+  const toggle=project.querySelector(".project-toggle");
+  toggle?.addEventListener("click",()=>{
+    const willOpen=!project.classList.contains("is-open");
+    expandableProjects.forEach(item=>setProjectOpen(item,false));
+    setProjectOpen(project,willOpen);
+    if(willOpen)setTimeout(()=>playSystemFlow(project.querySelector(".system-flow")),80);
   });
+});
+
+document.querySelectorAll(".project-system-tab").forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    const system=tab.closest(".project-system");
+    system.querySelectorAll(".project-system-tab").forEach(item=>{
+      const active=item===tab;
+      item.classList.toggle("active",active);
+      item.setAttribute("aria-selected",String(active));
+    });
+    system.querySelectorAll(".project-system-panel").forEach(panel=>{
+      panel.hidden=panel.dataset.systemPanel!==tab.dataset.systemTab;
+    });
+    if(tab.dataset.systemTab==="architecture")setTimeout(()=>playSystemFlow(system.querySelector(".system-flow")),40);
+  });
+});
+
+const systemFlows=[...document.querySelectorAll(".system-flow")];
+systemFlows.forEach(flow=>{
+  if(finePointer)flow.addEventListener("pointerenter",()=>playSystemFlow(flow));
+  flow.addEventListener("click",()=>playSystemFlow(flow));
+  flow.addEventListener("keydown",event=>{
+    if(event.key!=="Enter"&&event.key!==" ")return;
+    event.preventDefault();
+    playSystemFlow(flow);
+  });
+});
+
+if(!reducedMotion&&"IntersectionObserver" in window){
+  const systemFlowObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting||entry.target.dataset.played)return;
+      entry.target.dataset.played="true";
+      playSystemFlow(entry.target);
+    });
+  },{threshold:.52,rootMargin:"-6% 0px -8% 0px"});
+  systemFlows.forEach(flow=>systemFlowObserver.observe(flow));
+}else if(!reducedMotion){
+  systemFlows.forEach(playSystemFlow);
+}
+
+const moreProjectsButton=document.querySelector(".more-projects-button");
+const extraProjects=document.querySelector(".extra-projects");
+moreProjectsButton?.addEventListener("click",()=>{
+  const show=!extraProjects.classList.contains("is-visible");
+  extraProjects.classList.toggle("is-visible",show);
+  moreProjectsButton.setAttribute("aria-expanded",String(show));
+  moreProjectsButton.querySelector("span").textContent=show?"Show less":"View more";
+  if(!show)extraProjects.querySelectorAll("[data-project]").forEach(project=>setProjectOpen(project,false));
 });
 
 const nowCards=[...document.querySelectorAll(".now-card")];
@@ -284,7 +347,7 @@ if(mobileMotionEnabled){
 
     const tapTargets=[...new Set([
       ...mobileMotionTargets,
-      ...document.querySelectorAll(".button, .text-link, .project-links a, .project-bottom > a, .rail-link, .play-button")
+      ...document.querySelectorAll(".button, .text-link, .project-links a, .project-bottom > a, .project-toggle, .project-system-tab, .more-projects-button, .system-flow, .rail-link, .play-button")
     ])];
     const tapTimers=new WeakMap();
     const pressTarget=target=>{
