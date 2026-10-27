@@ -517,6 +517,14 @@ h1 em.hero-line:hover { text-shadow: 0 0 38px rgba(214,255,99,.22); }
   font-size: .82rem;
   font-weight: 700;
 }
+.project-link-pending {
+  padding-bottom: 3px;
+  border-bottom: 1px dashed currentColor;
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: default !important;
+}
 .project-links { display: flex; gap: 18px; }
 
 .story-section .section-head { grid-template-columns: 1.4fr .6fr; margin-bottom: 42px; }

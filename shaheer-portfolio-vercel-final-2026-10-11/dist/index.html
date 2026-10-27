@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230c0d0d'/%3E%3Cpath d='M8 22V9l8 8 8-8v13' fill='none' stroke='%23d6ff63' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=view-more-mobile-20261028">
+  <link rel="stylesheet" href="styles.css?v=six-projects-20261028">
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -309,6 +309,112 @@
                           <div><span>02 / DECISION</span><strong>Hybrid retrieval + RRF</strong><p>Fuse sparse and dense results before generating the answer.</p></div>
                           <div><span>03 / TRADE-OFF</span><strong>More moving parts</strong><p>Reranking improves evidence quality but adds coordination.</p></div>
                           <div><span>04 / RESULT</span><strong>Evidence-backed answers</strong><p>Citations, streaming responses and RAGAS evaluation.</p></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project project-expandable reveal" data-project>
+              <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-panel-skin-lesion">
+                <span class="project-no">05</span>
+                <span class="project-title" role="heading" aria-level="3">Skin lesion detection &amp; classification</span>
+                <span class="project-kind">HEALTH AI / COMPUTER VISION</span>
+                <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span>
+              </button>
+              <div class="project-panel" id="project-panel-skin-lesion">
+                <div class="project-panel-inner">
+                  <div class="project-body">
+                    <p>A two-stage system that localizes skin lesions with YOLO11m, classifies six conditions with EfficientNet-B3, and retrieves condition knowledge for clearer explanations.</p>
+                    <div class="project-proof">
+                      <span><strong>2-stage</strong> vision pipeline</span>
+                      <span><strong>6-class</strong> classification</span>
+                      <span><strong>333</strong> held-out images</span>
+                    </div>
+                  </div>
+                  <div class="project-bottom">
+                    <div class="tags"><span>YOLO11m</span><span>EfficientNet-B3</span><span>PyTorch</span><span>MLflow</span><span>RAG</span></div>
+                    <span class="project-link-pending" aria-label="Repository link coming soon">Repository</span>
+                  </div>
+                  <div class="project-system">
+                    <div class="project-system-head">
+                      <span>INSIDE THE SYSTEM</span>
+                      <div class="project-system-tabs" role="tablist" aria-label="Skin lesion system details">
+                        <button class="project-system-tab active" type="button" role="tab" aria-selected="true" data-system-tab="architecture">Architecture</button>
+                        <button class="project-system-tab" type="button" role="tab" aria-selected="false" data-system-tab="build">Behind the build</button>
+                      </div>
+                    </div>
+                    <div class="project-system-body">
+                      <div class="project-system-panel" data-system-panel="architecture">
+                        <div class="system-flow" tabindex="0" aria-label="Skin lesion analysis path. Tap to replay.">
+                          <div class="flow-node" style="--step:0"><i>01</i><strong>Image</strong><small>input</small></div><span class="flow-wire" style="--step:0"></span>
+                          <div class="flow-node" style="--step:1"><i>02</i><strong>Localize</strong><small>YOLO11m</small></div><span class="flow-wire" style="--step:1"></span>
+                          <div class="flow-node" style="--step:2"><i>03</i><strong>Crop</strong><small>lesion</small></div><span class="flow-wire" style="--step:2"></span>
+                          <div class="flow-node" style="--step:3"><i>04</i><strong>Classify</strong><small>EfficientNet</small></div><span class="flow-wire" style="--step:3"></span>
+                          <div class="flow-node" style="--step:4"><i>05</i><strong>Explain</strong><small>RAG</small></div>
+                        </div>
+                      </div>
+                      <div class="project-system-panel" data-system-panel="build" hidden>
+                        <div class="build-steps">
+                          <div><span>01 / PROBLEM</span><strong>One model, two tasks</strong><p>Localization and diagnosis need different visual signals.</p></div>
+                          <div><span>02 / DECISION</span><strong>Use two stages</strong><p>Detect the lesion first, then classify the focused crop.</p></div>
+                          <div><span>03 / VALIDATION</span><strong>Lock the test set</strong><p>Evaluate on 333 held-out images and test clinical samples.</p></div>
+                          <div><span>04 / CONTEXT</span><strong>Retrieve condition knowledge</strong><p>Support generated explanations with documented conditions.</p></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project project-expandable reveal" data-project>
+              <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-panel-inbo">
+                <span class="project-no">06</span>
+                <span class="project-title" role="heading" aria-level="3">INBO — AI-powered email inbox</span>
+                <span class="project-kind">FULL-STACK AI / PRODUCTIVITY</span>
+                <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span>
+              </button>
+              <div class="project-panel" id="project-panel-inbo">
+                <div class="project-panel-inner">
+                  <div class="project-body">
+                    <p>A university team project that syncs Gmail actions, classifies messages into 10 categories, and uses Gemini for summaries, to-dos, and streamed reply drafts.</p>
+                    <div class="project-proof">
+                      <span><strong>10</strong> email categories</span>
+                      <span><strong>3</strong> reply tones</span>
+                      <span><strong>Gmail</strong> two-way actions</span>
+                    </div>
+                  </div>
+                  <div class="project-bottom">
+                    <div class="tags"><span>Next.js</span><span>FastAPI</span><span>TF-IDF + SVM</span><span>Gemini</span><span>Gmail API</span></div>
+                    <span class="project-link-pending" aria-label="Repository link coming soon">Repository</span>
+                  </div>
+                  <div class="project-system">
+                    <div class="project-system-head">
+                      <span>INSIDE THE SYSTEM</span>
+                      <div class="project-system-tabs" role="tablist" aria-label="INBO system details">
+                        <button class="project-system-tab active" type="button" role="tab" aria-selected="true" data-system-tab="architecture">Architecture</button>
+                        <button class="project-system-tab" type="button" role="tab" aria-selected="false" data-system-tab="build">Behind the build</button>
+                      </div>
+                    </div>
+                    <div class="project-system-body">
+                      <div class="project-system-panel" data-system-panel="architecture">
+                        <div class="system-flow" tabindex="0" aria-label="INBO email processing path. Tap to replay.">
+                          <div class="flow-node" style="--step:0"><i>01</i><strong>Gmail</strong><small>OAuth</small></div><span class="flow-wire" style="--step:0"></span>
+                          <div class="flow-node" style="--step:1"><i>02</i><strong>Sync</strong><small>FastAPI</small></div><span class="flow-wire" style="--step:1"></span>
+                          <div class="flow-node" style="--step:2"><i>03</i><strong>Classify</strong><small>SVM</small></div><span class="flow-wire" style="--step:2"></span>
+                          <div class="flow-node" style="--step:3"><i>04</i><strong>Assist</strong><small>Gemini</small></div><span class="flow-wire" style="--step:3"></span>
+                          <div class="flow-node" style="--step:4"><i>05</i><strong>Inbox</strong><small>Next.js</small></div>
+                        </div>
+                      </div>
+                      <div class="project-system-panel" data-system-panel="build" hidden>
+                        <div class="build-steps">
+                          <div><span>01 / PROBLEM</span><strong>Inbox work is fragmented</strong><p>Reading, sorting and replying happen across repeated steps.</p></div>
+                          <div><span>02 / DECISION</span><strong>Classical ML for labels</strong><p>TF-IDF and SVM keep 10-category tagging deterministic.</p></div>
+                          <div><span>03 / ASSISTANCE</span><strong>Gemini where language helps</strong><p>Generate summaries, to-dos and tone-controlled drafts.</p></div>
+                          <div><span>04 / PRODUCT</span><strong>Keep Gmail actions together</strong><p>Send, reply, forward, star and archive in one client.</p></div>
                         </div>
                       </div>
                     </div>
