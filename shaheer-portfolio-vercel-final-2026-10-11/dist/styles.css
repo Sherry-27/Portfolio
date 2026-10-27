@@ -1349,6 +1349,8 @@ footer:hover > span { color: #d0d2ca; }
   gap: 13px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
   background: transparent;
   font-weight: 800;
   transition: transform .22s ease, color .22s ease, background .22s ease, border-color .22s ease;
@@ -1359,7 +1361,7 @@ footer:hover > span { color: #d0d2ca; }
 .more-projects-button:focus { outline: none; }
 .more-projects-button:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
 .more-projects-button.mobile-tap-target.is-tap-active,
-.more-projects-button:active { color: var(--ink); border-color: var(--lime); background: var(--lime); transform: scale(.985); }
+.more-projects-button:active { color: var(--ink); -webkit-text-fill-color: var(--ink); border-color: var(--lime); background: var(--lime); transform: scale(.985); }
 .more-projects-button[aria-expanded="true"] svg { transform: rotate(180deg); }
 .extra-projects { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .48s cubic-bezier(.2,.72,.2,1), opacity .3s ease; }
 .extra-projects-inner { min-height: 0; overflow: hidden; }
@@ -1377,6 +1379,23 @@ footer:hover > span { color: #d0d2ca; }
 }
 
 @media (hover: none), (pointer: coarse), (max-width: 680px) {
+  .more-projects-button,
+  .more-projects-button:hover,
+  .more-projects-button:focus {
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important;
+    border-color: var(--line-strong);
+    background: transparent;
+    transform: none;
+  }
+  .more-projects-button:active,
+  .more-projects-button.mobile-tap-target.is-tap-active {
+    color: var(--ink) !important;
+    -webkit-text-fill-color: var(--ink) !important;
+    border-color: var(--lime);
+    background: var(--lime);
+    transform: scale(.985);
+  }
   .project-accordion .project.mobile-motion:hover,
   .project-accordion .project.mobile-motion:focus-within { color: var(--text); }
   .project-accordion .project.mobile-motion:hover::before,
