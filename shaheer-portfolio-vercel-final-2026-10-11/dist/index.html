@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230c0d0d'/%3E%3Cpath d='M8 22V9l8 8 8-8v13' fill='none' stroke='%23d6ff63' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=project-accordion-20261027">
+  <link rel="stylesheet" href="styles.css?v=project-polish-20261028">
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -223,7 +223,34 @@
                 <div class="tags"><span>YOLO-based</span><span>PyTorch</span><span>EasyOCR</span><span>ONNX</span></div>
                 <a href="https://github.com/Sherry-27/-ANPR-Automatic-number-plate-recognition-" target="_blank" rel="noopener">Repository</a>
               </div>
-              <p class="project-build-note"><strong>Build note:</strong> optimized the inference path so detection, tracking and OCR could stay responsive on live video.</p>
+              <div class="project-system">
+                <div class="project-system-head">
+                  <span>INSIDE THE SYSTEM</span>
+                  <div class="project-system-tabs" role="tablist" aria-label="ANPR system details">
+                    <button class="project-system-tab active" type="button" role="tab" aria-selected="true" data-system-tab="architecture">Architecture</button>
+                    <button class="project-system-tab" type="button" role="tab" aria-selected="false" data-system-tab="build">Behind the build</button>
+                  </div>
+                </div>
+                <div class="project-system-body">
+                  <div class="project-system-panel" data-system-panel="architecture">
+                    <div class="system-flow" tabindex="0" aria-label="ANPR processing path. Tap to replay.">
+                      <div class="flow-node" style="--step:0"><i>01</i><strong>Frame</strong><small>video</small></div><span class="flow-wire" style="--step:0"></span>
+                      <div class="flow-node" style="--step:1"><i>02</i><strong>Detect</strong><small>YOLO</small></div><span class="flow-wire" style="--step:1"></span>
+                      <div class="flow-node" style="--step:2"><i>03</i><strong>Track</strong><small>identity</small></div><span class="flow-wire" style="--step:2"></span>
+                      <div class="flow-node" style="--step:3"><i>04</i><strong>Read</strong><small>EasyOCR</small></div><span class="flow-wire" style="--step:3"></span>
+                      <div class="flow-node" style="--step:4"><i>05</i><strong>Output</strong><small>plate event</small></div>
+                    </div>
+                  </div>
+                  <div class="project-system-panel" data-system-panel="build" hidden>
+                    <div class="build-steps">
+                      <div><span>01 / PROBLEM</span><strong>Busy traffic breaks identity</strong><p>Detections alone cannot keep the same vehicle across frames.</p></div>
+                      <div><span>02 / DECISION</span><strong>Track before OCR</strong><p>Preserve vehicle identity, then read the plate from useful frames.</p></div>
+                      <div><span>03 / TRADE-OFF</span><strong>Speed versus clarity</strong><p>OCR needs enough detail without slowing the live pipeline.</p></div>
+                      <div><span>04 / RESULT</span><strong>Real-time recognition</strong><p>43 FPS, 23ms inference and 95% mAP@0.5.</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -258,7 +285,34 @@
                     <div class="tags"><span>FastAPI</span><span>Gemini</span><span>ChromaDB</span><span>Groq</span></div>
                     <a href="https://github.com/Sherry-27/DocIQ" target="_blank" rel="noopener">Repository</a>
                   </div>
-                  <p class="project-build-note"><strong>Build note:</strong> designed for evidence-backed answers and the boring-but-important production safeguards.</p>
+                  <div class="project-system">
+                    <div class="project-system-head">
+                      <span>INSIDE THE SYSTEM</span>
+                      <div class="project-system-tabs" role="tablist" aria-label="DocIQ system details">
+                        <button class="project-system-tab active" type="button" role="tab" aria-selected="true" data-system-tab="architecture">Architecture</button>
+                        <button class="project-system-tab" type="button" role="tab" aria-selected="false" data-system-tab="build">Behind the build</button>
+                      </div>
+                    </div>
+                    <div class="project-system-body">
+                      <div class="project-system-panel" data-system-panel="architecture">
+                        <div class="system-flow" tabindex="0" aria-label="DocIQ document path. Tap to replay.">
+                          <div class="flow-node" style="--step:0"><i>01</i><strong>Upload</strong><small>document</small></div><span class="flow-wire" style="--step:0"></span>
+                          <div class="flow-node" style="--step:1"><i>02</i><strong>Index</strong><small>chunks</small></div><span class="flow-wire" style="--step:1"></span>
+                          <div class="flow-node" style="--step:2"><i>03</i><strong>Retrieve</strong><small>hybrid</small></div><span class="flow-wire" style="--step:2"></span>
+                          <div class="flow-node" style="--step:3"><i>04</i><strong>Rerank</strong><small>RRF</small></div><span class="flow-wire" style="--step:3"></span>
+                          <div class="flow-node" style="--step:4"><i>05</i><strong>Answer</strong><small>citations</small></div>
+                        </div>
+                      </div>
+                      <div class="project-system-panel" data-system-panel="build" hidden>
+                        <div class="build-steps">
+                          <div><span>01 / PROBLEM</span><strong>Single retrieval misses evidence</strong><p>Semantic similarity alone can overlook exact document terms.</p></div>
+                          <div><span>02 / DECISION</span><strong>Hybrid retrieval + RRF</strong><p>Fuse sparse and dense results before generating the answer.</p></div>
+                          <div><span>03 / TRADE-OFF</span><strong>More moving parts</strong><p>Reranking improves evidence quality but adds coordination.</p></div>
+                          <div><span>04 / RESULT</span><strong>Evidence-backed answers</strong><p>Citations, streaming responses and RAGAS evaluation.</p></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
@@ -381,6 +435,6 @@
     <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <span class="track-time">LOOP</span>
   </div>
-  <script src="app.js?v=project-accordion-20261027"></script>
+  <script src="app.js?v=project-polish-20261028"></script>
 </body>
 </html>

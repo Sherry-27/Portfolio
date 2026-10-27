@@ -166,7 +166,7 @@ const setProjectOpen=(project,open)=>{
 };
 
 const playSystemFlow=flow=>{
-  if(!flow||reducedMotion)return;
+  if(!flow)return;
   flow.classList.remove("is-running");
   void flow.offsetWidth;
   flow.classList.add("is-running");
@@ -208,16 +208,16 @@ systemFlows.forEach(flow=>{
   });
 });
 
-if(!reducedMotion&&"IntersectionObserver" in window){
+if("IntersectionObserver" in window){
   const systemFlowObserver=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(!entry.isIntersecting||entry.target.dataset.played)return;
       entry.target.dataset.played="true";
       playSystemFlow(entry.target);
     });
-  },{threshold:.52,rootMargin:"-6% 0px -8% 0px"});
+  },{threshold:.28,rootMargin:"-2% 0px -5% 0px"});
   systemFlows.forEach(flow=>systemFlowObserver.observe(flow));
-}else if(!reducedMotion){
+}else{
   systemFlows.forEach(playSystemFlow);
 }
 
